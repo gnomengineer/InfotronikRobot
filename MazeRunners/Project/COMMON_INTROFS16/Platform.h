@@ -10,10 +10,7 @@
 
 #include "Platform_Local.h"
 
-void PL_Init(void);
-void PL_Deinit(void);
-
-#define PL_HAS_LED (0)
+#define PL_HAS_LED (1)
 
 #ifdef PL_IS_ROBO
 	#define PL_NOF_LED (2)
@@ -22,5 +19,8 @@ void PL_Deinit(void);
 #else
 	#error "Unknown board?"
 #endif
+
+void PL_Init(void);
+void PL_Deinit(void);
 
 #endif /* SOURCES_COMMON_INTROFS16_PLATFORM_H_ */

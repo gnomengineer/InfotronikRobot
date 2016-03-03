@@ -5,8 +5,10 @@
  *      Author: Daniel Föhn
  */
 
-#if PL_NOF_LED
-#include "LED.h"
+#include "Platform.h"
+
+#if PL_HAS_LED
+	#include "LED.h"
 
 void LED_Init() {
 #if PL_NOF_LED >= 1
