@@ -8,6 +8,8 @@
 #ifndef SOURCES_COMMON_INTROFS16_LED_H_
 #define SOURCES_COMMON_INTROFS16_LED_H_
 
+#include "Platform.h"
+
 #if PL_NOF_LED >= 1
 	#include "LEDPin1.h"
 #endif
