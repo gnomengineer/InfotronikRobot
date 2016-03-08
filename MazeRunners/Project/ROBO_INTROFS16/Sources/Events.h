@@ -37,6 +37,7 @@
 #include "BitIoLdd1.h"
 #include "LEDpin2.h"
 #include "BitIoLdd2.h"
+#include "HF1.h"
 
 #ifdef __cplusplus
 extern "C" {
