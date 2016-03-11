@@ -3,4 +3,6 @@
 
 void APP_Start(void);
 
+void APP_HandleEvent(EVNT_Handle);
+
 #endif /* SOURCES_FS2016_COMMON_APPLICATION_H_ */
