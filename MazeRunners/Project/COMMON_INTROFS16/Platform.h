@@ -20,7 +20,8 @@
 	#error "Unknown board?"
 #endif
 
-#define PL_CONFIG_HAS_EVENTS (1)
+#define PL_CONFIG_HAS_EVENTS 	(1)
+#define PL_CONFIG_HAS_TIMER		(1)
 
 void PL_Init(void);
 void PL_Deinit(void);
