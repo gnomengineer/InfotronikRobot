@@ -30,8 +30,6 @@ void APP_Start(void) {
 
 
 
-  EVNT_SetEvent(EVENT_LED_HEARTBEAT);
-
   for(;;) {
     EVNT_HandleEvent(APP_HandleEvent,(bool)0);
   }
