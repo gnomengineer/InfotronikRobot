@@ -2,13 +2,9 @@
 #include "Application.h"
 #include "LED.h"
 #include "Event.h"
+#include "WAIT1.h"
 
-
-void APP_Start(void) {
-  PL_Init();
-  /* init: turn off */
-
-  void APP_HandleEvent(EVNT_Handle event)
+ void APP_HandleEvent(EVNT_Handle event)
   {
   	switch(event)
   	{
@@ -27,6 +23,12 @@ void APP_Start(void) {
   		break;
   	}
   }
+
+void APP_Start(void) {
+  PL_Init();
+  /* init: turn off */
+
+
 
   EVNT_SetEvent(EVENT_LED_HEARTBEAT);
 
