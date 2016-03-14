@@ -13,7 +13,6 @@
   		break;
   	case EVENT_LED_HEARTBEAT:
   		LED1_Neg();
-  		WAIT1_Waitms(500);
   		break;
   	case EVENT_SW1_PRESSED:
   		//do something
@@ -31,7 +30,7 @@ void APP_Start(void) {
 
 
   for(;;) {
-    EVNT_HandleEvent(APP_HandleEvent,(bool)0);
+    EVNT_HandleEvent(APP_HandleEvent,1);
   }
 
   for(;;) {

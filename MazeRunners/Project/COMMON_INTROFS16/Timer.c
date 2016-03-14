@@ -15,8 +15,15 @@
 void TMR_OnInterrupt(void) {
   /* this one gets called from an interrupt!!!! */
   /*! \todo Add code for a blinking LED here */
-	LED1_Neg();
-	WAIT1_Waitms(500);
+	static int noT = 0;
+	#define BLINK_TIME_MS 2000
+
+	noT++;
+	if(noT % (BLINK_TIME_MS / TMR_TICK_MS) == 0)
+	{
+		EVNT_SetEvent(EVENT_LED_HEARTBEAT);
+
+	}
 }
 
 void TMR_Init(void) {
