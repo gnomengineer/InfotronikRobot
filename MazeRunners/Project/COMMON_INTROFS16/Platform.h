@@ -10,18 +10,29 @@
 
 #include "Platform_Local.h"
 
-#define PL_HAS_LED (1)
 
+/*
 #ifdef PL_IS_ROBO
-	#define PL_NOF_LED (2)
+	#define PL_CONFIG_NOF_LED (2)
+#define PL_NOF_KEY (1)
 #elif defined(PL_IS_FRDM)
-	#define PL_NOF_LED (3)
+	#define PL_CONFIG_NOF_LED (3)
+	#define PL_NOF_KEY (7)
 #else
 	#error "Unknown board?"
 #endif
+//*/
 
-#define PL_CONFIG_HAS_EVENTS 	(1)
-#define PL_CONFIG_HAS_TIMER		(1)
+#define PL_CONFIG_NOF_LED 		PL_LOCAL_NOF_LED
+#define PL_CONFIG_NOF_KEY		PL_LOCAL_NOF_KEY
+
+
+#define PL_CONFIG_HAS_EVENTS 	(1 && defined(PL_LOCAL_HAS_EVENTS))
+#define PL_CONFIG_HAS_TIMER		(1 && defined(PL_LOCAL_HAS_TIMER))
+#define PL_CONFIG_HAS_LED 		(1 && defined(PL_LOCAL_HAS_LED))
+#define PL_CONFIG_HAS_KEY 		(1 && defined(PL_LOCAL_HAS_KEY))
+#define PL_CONFIG_HAS_JOYSTICK	(1 && defined(PL_LOCAL_HAS_JOYSTICK))
+
 
 void PL_Init(void);
 void PL_Deinit(void);

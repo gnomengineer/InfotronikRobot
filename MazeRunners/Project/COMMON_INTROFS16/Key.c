@@ -7,7 +7,8 @@
 
 #include "Platform.h"
 
-#if PL_HAS_KEYS
+#if PL_CONFIG_HAS_KEYS
 
 #include "Key.h"
 
+#endif
