@@ -20,6 +20,12 @@ typedef enum EVNT_Handle {
   EVNT_STARTUP,            /*!< System startup Event */
   EVENT_LED_HEARTBEAT,     /*!< LED heartbeat */
   EVENT_SW1_PRESSED,
+  EVENT_SW2_PRESSED,
+  EVENT_SW3_PRESSED,
+  EVENT_SW4_PRESSED,
+  EVENT_SW5_PRESSED,
+  EVENT_SW6_PRESSED,
+  EVENT_SW7_PRESSED,
   /*!< \todo Your events here */
   EVNT_NOF_EVENTS       /*!< Must be last one! */
 } EVNT_Handle;
