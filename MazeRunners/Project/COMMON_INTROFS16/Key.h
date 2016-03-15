@@ -8,29 +8,33 @@
 #ifndef SOURCES_COMMON_INTROFS16_KEY_H_
 #define SOURCES_COMMON_INTROFS16_KEY_H_
 
+#include "Platform.h"
+#if PL_CONFIG_HAS_KEY
+
 typedef enum
 {
 #if PL_CONFIG_NOF_KEY >= 1
-	KEY_BTN1;
+	KEY_BTN1,
 #endif
 #if PL_CONFIG_NOF_KEY >= 2
-	KEY_BTN2;
+	KEY_BTN2,
 #endif
 #if PL_CONFIG_NOF_KEY >= 3
-	KEY_BTN3;
+	KEY_BTN3,
 #endif
 #if PL_CONFIG_NOF_KEY >= 4
-	KEY_BTN4;
+	KEY_BTN4,
 #endif
 #if PL_CONFIG_NOF_KEY >= 5
-	KEY_BTN5;
+	KEY_BTN5,
 #endif
 #if PL_CONFIG_NOF_KEY >= 6
-	KEY_BTN6;
+	KEY_BTN6,
 #endif
 #if PL_CONFIG_NOF_KEY >= 7
-	KEY_BTN7;
+	KEY_BTN7,
 #endif
+	KEY_BTN_LAST
 }KEY_BUTTON;
 
 #if PL_CONFIG_NOF_KEY >= 1
@@ -82,6 +86,15 @@ typedef enum
 	#define Key7_Get() FALSE
 #endif
 
+void Key_Scan();
 
+void Key_Open();
 
+void Key_Close();
+
+void Key_Init();
+
+void Key_Deinit();
+
+#endif
 #endif /* SOURCES_COMMON_INTROFS16_KEY_H_ */
