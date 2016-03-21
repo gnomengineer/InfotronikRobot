@@ -10,7 +10,7 @@
   	switch(event)
   	{
   	case EVNT_STARTUP:
-  		//nothing;
+  		LED1_On();//nothing;
   		break;
   	case EVENT_LED_HEARTBEAT:
   		// do nothing;
@@ -30,12 +30,18 @@
 void APP_Start(void) {
   PL_Init();
   /* init: turn off */
+#if PL_CONFIG_HAS_EVENTS
+  EVNT_SetEvent(EVNT_STARTUP);
+#endif
 
-
-
+  CLS1_SendStr("Hello World\n",CLS1_GetStdIo()->StdOut);
   for(;;) {
+#if PL_CONFIG_HAS_KEY
 	  Key_Scan();
+#endif
+#if PL_CONFIG_HAS_EVENTS
     EVNT_HandleEvent(APP_HandleEvent,1);
+#endif
   }
 
   for(;;) {
