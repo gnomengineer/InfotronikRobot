@@ -21,7 +21,7 @@ void TMR_OnInterrupt(void) {
 	noT++;
 	if(noT % (BLINK_TIME_MS / TMR_TICK_MS) == 0)
 	{
-		EVNT_SetEvent(EVENT_LED_HEARTBEAT);
+		//EVNT_SetEvent(EVENT_LED_HEARTBEAT);
 
 	}
 }
