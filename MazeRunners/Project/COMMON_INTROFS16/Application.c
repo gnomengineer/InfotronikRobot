@@ -3,6 +3,7 @@
 #include "LED.h"
 #include "Event.h"
 #include "WAIT1.h"
+#include "Key.h"
 
  void APP_HandleEvent(EVNT_Handle event)
   {
@@ -12,11 +13,14 @@
   		//nothing;
   		break;
   	case EVENT_LED_HEARTBEAT:
-  		LED1_Neg();
+  		// do nothing;
   		break;
   	case EVENT_SW1_PRESSED:
-  		//do something
+  		LED1_On();
   		break;
+  	case EVENT_SW2_PRESSED:
+  	  	LED1_Off();
+  	  	break;
   	default:
   		//do nothing
   		break;
@@ -30,6 +34,7 @@ void APP_Start(void) {
 
 
   for(;;) {
+	  Key_Scan();
     EVNT_HandleEvent(APP_HandleEvent,1);
   }
 
