@@ -42,6 +42,15 @@
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
+#include "SW1.h"
+#include "BitIoLdd3.h"
+#include "CLS1.h"
+#include "WAIT1.h"
+#include "KSDK1.h"
+#include "BT1.h"
+#include "Serial1.h"
+#include "ASerialLdd1.h"
+#include "UTIL1.h"
 
 #ifdef __cplusplus
 extern "C" {

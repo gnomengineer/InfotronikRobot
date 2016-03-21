@@ -4,6 +4,8 @@
 #include "Event.h"
 #include "WAIT1.h"
 #include "Key.h"
+#include "CLS1.h"
+
 
  void APP_HandleEvent(EVNT_Handle event)
   {
@@ -16,7 +18,8 @@
   		// do nothing;
   		break;
   	case EVENT_SW1_PRESSED:
-  		LED1_On();
+  		LED1_Neg();
+  		CLS1_SendStr("SW1_Pressed", CLS1_GetStdio()->stdOut);
   		break;
   	case EVENT_SW2_PRESSED:
   	  	LED1_Off();
