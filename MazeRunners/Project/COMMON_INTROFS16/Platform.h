@@ -32,7 +32,7 @@
 #define PL_CONFIG_HAS_LED 		(1 && defined(PL_LOCAL_HAS_LED))
 #define PL_CONFIG_HAS_KEY 		(1 && defined(PL_LOCAL_HAS_KEY))
 #define PL_CONFIG_HAS_JOYSTICK	(1 && defined(PL_LOCAL_HAS_JOYSTICK))
-
+#define PL_CONFIG_HAS_TRIGGER	(1 && defined(PL_LOCAL_HAS_TRIGGER))
 
 void PL_Init(void);
 void PL_Deinit(void);
