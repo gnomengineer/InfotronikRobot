@@ -5,7 +5,7 @@
 #include "WAIT1.h"
 #include "Key.h"
 #include "CLS1.h"
-
+#include "Buzzer.h"
 
  void APP_HandleEvent(EVNT_Handle event)
   {
@@ -19,6 +19,7 @@
   		break;
   	case EVENT_SW1_PRESSED:
   		LED1_Neg();
+  		BUZ_PlayTune();
   		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
   		break;
   	case EVENT_SW2_PRESSED:

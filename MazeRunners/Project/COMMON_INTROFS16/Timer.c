@@ -19,11 +19,17 @@ void TMR_OnInterrupt(void) {
 	#define BLINK_TIME_MS 2000
 
 	noT++;
+#if PL_CONFIG_HAS_EVENTS
 	if(noT % (BLINK_TIME_MS / TMR_TICK_MS) == 0)
 	{
-		TRG_AddTick();
+		EVNT_SetEvent(EVENT_LED_HEARTBEAT);
 
 	}
+#endif
+
+#if PL_CONFIG_HAS_TRIGGER
+	TRG_AddTick();
+#endif
 }
 
 void TMR_Init(void) {

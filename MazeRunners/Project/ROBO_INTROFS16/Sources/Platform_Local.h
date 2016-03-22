@@ -16,7 +16,8 @@
 #define PL_LOCAL_HAS_EVENTS
 #define PL_LOCAL_HAS_TIMER
 #define PL_LOCAL_HAS_TRIGGER
-
+#define PL_LOCAL_HAS_BUZZER
+#define PL_LOCAL_HAS_SHELL
 
 #define PL_LOCAL_NOF_LED 		(2)
 #define PL_LOCAL_NOF_KEY 		(1)
