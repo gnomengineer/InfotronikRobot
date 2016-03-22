@@ -13,6 +13,7 @@
   	{
   	case EVNT_STARTUP:
   		LED1_On();//nothing;
+  		BUZ_Beep(500,2000);
   		break;
   	case EVENT_LED_HEARTBEAT:
   		// do nothing;
