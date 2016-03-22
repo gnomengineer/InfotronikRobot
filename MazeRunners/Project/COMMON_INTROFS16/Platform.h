@@ -35,6 +35,7 @@
 #define PL_CONFIG_HAS_TRIGGER	(1 && defined(PL_LOCAL_HAS_TRIGGER))
 #define PL_CONFIG_HAS_BUZZER	(1 && defined(PL_LOCAL_HAS_BUZZER))
 #define PL_CONFIG_HAS_SHELL		(1 && defined(PL_LOCAL_HAS_SHELL))
+#define PL_CONFIG_HAS_DEBOUNCE	(1 && defined(PL_LOCAL_HAS_DEBOUNCE))
 
 void PL_Init(void);
 void PL_Deinit(void);
