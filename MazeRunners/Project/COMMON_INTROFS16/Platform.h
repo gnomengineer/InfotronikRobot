@@ -9,7 +9,7 @@
 #define SOURCES_COMMON_INTROFS16_PLATFORM_H_
 
 #include "Platform_Local.h"
-
+#include <stdint.h>
 
 /*
 #ifdef PL_IS_ROBO

@@ -19,7 +19,7 @@
   		break;
   	case EVENT_SW1_PRESSED:
   		LED1_Neg();
-  		CLS1_SendStr("SW1_Pressed", CLS1_GetStdio()->stdOut);
+  		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
   		break;
   	case EVENT_SW2_PRESSED:
   	  	LED1_Off();
@@ -37,14 +37,15 @@ void APP_Start(void) {
   EVNT_SetEvent(EVNT_STARTUP);
 #endif
 
-  CLS1_SendStr("Hello World\n",CLS1_GetStdIo()->StdOut);
+  CLS1_SendStr("Hello World\n\r",CLS1_GetStdio()->stdOut);
   for(;;) {
 #if PL_CONFIG_HAS_KEY
-	  Key_Scan();
+	Key_Scan();
 #endif
 #if PL_CONFIG_HAS_EVENTS
     EVNT_HandleEvent(APP_HandleEvent,1);
 #endif
+    WAIT1_Waitms(50);
   }
 
   for(;;) {
