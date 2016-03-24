@@ -13,14 +13,18 @@
   	{
   	case EVNT_STARTUP:
   		LED1_On();//nothing;
-  		BUZ_Beep(500,2000);
+#if PL_CONFIG_HAS_BUZZER
+  		BUZ_Beep(500,1000);
+#endif
   		break;
   	case EVENT_LED_HEARTBEAT:
-  		// do nothing;
+  		LED1_Neg();
   		break;
   	case EVENT_SW1_PRESSED:
   		LED1_Neg();
+#if PL_CONFIG_HAS_BUZZER
   		BUZ_PlayTune();
+#endif
   		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
   		break;
   	case EVENT_SW2_PRESSED:
@@ -42,7 +46,7 @@ void APP_Start(void) {
   CLS1_SendStr("Hello World\n\r",CLS1_GetStdio()->stdOut);
   for(;;) {
 #if PL_CONFIG_HAS_KEY
-	Key_Scan();
+	KEYDBNC_Process();
 #endif
 #if PL_CONFIG_HAS_EVENTS
     EVNT_HandleEvent(APP_HandleEvent,1);
