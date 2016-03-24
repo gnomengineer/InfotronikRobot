@@ -34,22 +34,26 @@
 #define _FS4   (369.99)
 #define _G4    (392.00)
 #define _GS4   (415.30)
-#define _A4    (440.00)			x
+#define _A4    (440.00)
 #define _AS4   (466.16)
-#define _B4    (493.88)			x
-#define _C5    (523.25)			x
+#define _B4    (493.88)
+#define _C5    (523.25)
 #define _CS5   (554.37)
-#define _D5    (587.33)			x
+#define _D5    (587.33)
 #define _DS5   (622.25)
-#define _E5    (659.25)			x
-#define _F5    (698.46)			x
+#define _E5    (659.25)
+#define _F5    (698.46)
 #define _FS5   (739.99)
-#define _G5    (783.99)			x
+#define _G5    (783.99)
 #define _GS5   (830.61)
-#define _A5    (880.00)			x
+#define _A5    (880.00)
 #define _AS5   (932.33)
 #define _B5    (987.77)
 
+/* definition of length of the notes */
+#define Beep_LLong	(750)
+#define Beep_Long	(500)
+#define Beep_Short	(250)
 
 /* end definition of notes */
 
@@ -75,8 +79,46 @@ static const BUZ_Note Standard[] =
 
 static const BUZ_Note Tetris[] =
 {
-		{},
-		{},
-		}
+		{_E4, Beep_Long},
+		{_B3, Beep_Short},
+		{_C4, Beep_Short},
+		{_D4, Beep_Long},
+		{_C4, Beep_Short},
+		{_B3, Beep_Short},
+		{_A3, Beep_Long},
+		{_A3, Beep_Short},
+		{_C4, Beep_Short},
+		{_E4, Beep_Long},
+		{_D4, Beep_Short},
+		{_C4, Beep_Short},
+		{_B3, Beep_Long},
+		{_B3, Beep_Short},
+		{_C4, Beep_Short},
+		{_D4, Beep_Long},
+		{_E4, Beep_Long},
+		{_C4, Beep_Long},
+		{_A3, Beep_Long},
+		{_A3, Beep_Long},
+		{_R, Beep_Long},
+		{_D4, Beep_LLong},
+		{_F4, Beep_Short},
+		{_A4, Beep_Long},
+		{_G4, Beep_Short},
+		{_F4, Beep_Short},
+		{_E4, Beep_LLong},
+		{_C4, Beep_Short},
+		{_E4, Beep_Long},
+		{_D4, Beep_Short},
+		{_C4, Beep_Short},
+		{_B3, Beep_Long},
+		{_B3, Beep_Short},
+		{_C4, Beep_Short},
+		{_D4, Beep_Long},
+		{_E4, Beep_Long},
+		{_C4, Beep_Long},
+		{_A3, Beep_Long},
+		{_A3, Beep_Long},
+		{_R, Beep_Long},
+};
 
 #endif /* SOURCES_COMMON_INTROFS16_TUNES_H_ */

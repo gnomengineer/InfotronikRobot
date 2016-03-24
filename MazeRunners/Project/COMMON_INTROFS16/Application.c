@@ -14,7 +14,7 @@
   	case EVNT_STARTUP:
   		LED1_On();//nothing;
 #if PL_CONFIG_HAS_BUZZER
-  		BUZ_Beep(500,1000);
+  		BUZ_PlayTune();
 #endif
   		break;
   	case EVENT_LED_HEARTBEAT:
