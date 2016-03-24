@@ -6,6 +6,7 @@
 #include "Key.h"
 #include "CLS1.h"
 #include "Buzzer.h"
+#include "Tunes.h"
 
  void APP_HandleEvent(EVNT_Handle event)
   {
@@ -23,13 +24,17 @@
   	case EVENT_SW1_PRESSED:
   		LED1_Neg();
 #if PL_CONFIG_HAS_BUZZER
-  		BUZ_PlayTune();
+  		BUZ_PlayTune(STANDARD);
 #endif
   		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
   		break;
   	case EVENT_SW2_PRESSED:
   	  	LED1_Off();
   	  	break;
+  	case EVENT_SW1_LPRESSED:
+#if PL_CONFIG_HAS_BUZZER
+  		BUZ_PlayTune(TETRIS);
+#endif
   	default:
   		//do nothing
   		break;
