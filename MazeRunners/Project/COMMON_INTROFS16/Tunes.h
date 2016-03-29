@@ -8,11 +8,36 @@
 #ifndef SOURCES_COMMON_INTROFS16_TUNES_H_
 #define SOURCES_COMMON_INTROFS16_TUNES_H_
 
-#include "Buzzer.h"
-
 /* start definition of notes here */
 #define _R     (0)
 
+#define _C3    (130)
+#define _CS3   (138)
+#define _D3    (146)
+#define _DS3   (155)
+#define _E3    (164)
+#define _F3    (174)
+#define _FS3   (185)
+#define _G3    (196)
+#define _GS3   (207)
+#define _A3    (220)
+#define _AS3   (233)
+#define _B3    (246)
+//Grundton C
+#define _C4    (261)
+#define _CS4   (277)
+#define _D4    (293)
+#define _DS4   (311)
+#define _E4    (329)
+#define _F4    (349)
+#define _FS4   (369)
+#define _G4    (392)
+#define _GS4   (415)
+#define _A4    (440)
+#define _AS4   (466)
+#define _B4    (493)
+
+/*
 #define _C3    (130.81)
 #define _CS3   (138.59)
 #define _D3    (146.83)
@@ -51,9 +76,10 @@
 #define _B5    (987.77)
 
 /* definition of length of the notes */
-#define Beep_LLong	(750)
-#define Beep_Long	(500)
-#define Beep_Short	(250)
+#define Half_Note	(1000)
+#define Quarter_Note	(500)
+#define Eighth_Note	(250)
+#define Stop (100)
 
 /* end definition of notes */
 
@@ -62,6 +88,8 @@ typedef enum
 {
 	STANDARD,
 	TETRIS,
+	ENTLEIN,
+	TONLEITER,
 	NOF_TUNES
 } MELODIES;
 
@@ -70,55 +98,9 @@ typedef struct {
   int ms; /* milliseconds */
 } BUZ_Note;
 
-static const BUZ_Note Standard[] =
-{ /* freq, ms */
-    {500,100},
-    {300,500},
-    {100,200},
-};
+extern const BUZ_Note* Melody[];
+//extern const BUZ_Note** Melody;
 
-static const BUZ_Note Tetris[] =
-{
-		{_E4, Beep_Long},
-		{_B3, Beep_Short},
-		{_C4, Beep_Short},
-		{_D4, Beep_Long},
-		{_C4, Beep_Short},
-		{_B3, Beep_Short},
-		{_A3, Beep_Long},
-		{_A3, Beep_Short},
-		{_C4, Beep_Short},
-		{_E4, Beep_Long},
-		{_D4, Beep_Short},
-		{_C4, Beep_Short},
-		{_B3, Beep_Long},
-		{_B3, Beep_Short},
-		{_C4, Beep_Short},
-		{_D4, Beep_Long},
-		{_E4, Beep_Long},
-		{_C4, Beep_Long},
-		{_A3, Beep_Long},
-		{_A3, Beep_Long},
-		{_R, Beep_Long},
-		{_D4, Beep_LLong},
-		{_F4, Beep_Short},
-		{_A4, Beep_Long},
-		{_G4, Beep_Short},
-		{_F4, Beep_Short},
-		{_E4, Beep_LLong},
-		{_C4, Beep_Short},
-		{_E4, Beep_Long},
-		{_D4, Beep_Short},
-		{_C4, Beep_Short},
-		{_B3, Beep_Long},
-		{_B3, Beep_Short},
-		{_C4, Beep_Short},
-		{_D4, Beep_Long},
-		{_E4, Beep_Long},
-		{_C4, Beep_Long},
-		{_A3, Beep_Long},
-		{_A3, Beep_Long},
-		{_R, Beep_Long},
-};
+
 
 #endif /* SOURCES_COMMON_INTROFS16_TUNES_H_ */

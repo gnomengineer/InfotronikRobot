@@ -7,6 +7,7 @@
 #include "CLS1.h"
 #include "Buzzer.h"
 #include "Tunes.h"
+static int tune_counter = 0;
 
  void APP_HandleEvent(EVNT_Handle event)
   {
@@ -15,7 +16,7 @@
   	case EVNT_STARTUP:
   		LED1_On();//nothing;
 #if PL_CONFIG_HAS_BUZZER
-  		BUZ_PlayTune();
+  		BUZ_Beep(400,200);
 #endif
   		break;
   	case EVENT_LED_HEARTBEAT:
@@ -24,7 +25,7 @@
   	case EVENT_SW1_PRESSED:
   		LED1_Neg();
 #if PL_CONFIG_HAS_BUZZER
-  		BUZ_PlayTune(STANDARD);
+  		BUZ_PlayTune(TETRIS);
 #endif
   		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
   		break;
@@ -33,7 +34,15 @@
   	  	break;
   	case EVENT_SW1_LPRESSED:
 #if PL_CONFIG_HAS_BUZZER
-  		BUZ_PlayTune(TETRIS);
+  		if(tune_counter < NOF_TUNES)
+  		{
+  			BUZ_PlayTune(tune_counter);
+  			tune_counter++;
+  		}
+  		else
+  		{
+  			tune_counter = 0;
+  		}
 #endif
   	default:
   		//do nothing

@@ -9,6 +9,7 @@
 #include "Platform.h"
 #if PL_CONFIG_HAS_BUZZER
 #include "Buzzer.h"
+#include "Tunes.h"
 #include "BUZ1.h"
 #include "Trigger.h"
 #include "UTIL1.h"
@@ -38,7 +39,7 @@ static void BUZ_Toggle(void *dataPtr) {
 uint8_t BUZ_Beep(uint16_t freq, uint16_t durationMs) {
   if (trgInfo.buzIterationCntr==0) { /* only if buzzer is not running right now */
     BUZ1_SetVal(); /* turn buzzer on */
-    trgInfo.buzPeriodTicks = (1000*TRG_TICKS_MS)/freq;
+    trgInfo.buzPeriodTicks = (4000*TRG_TICKS_MS)/freq;
     trgInfo.buzIterationCntr = durationMs/TRG_TICKS_MS/trgInfo.buzPeriodTicks;
     return TRG_SetTrigger(TRG_BUZ_BEEP, trgInfo.buzPeriodTicks, BUZ_Toggle, (void*)&trgInfo);
   } else {
@@ -46,30 +47,36 @@ uint8_t BUZ_Beep(uint16_t freq, uint16_t durationMs) {
   }
 }
 
-typedef struct {
-  int freq; /* frequency */
-  int ms; /* milliseconds */
-} BUZ_Tune;
+//static const BUZ_Note Melody[] = ;
 
-static const BUZ_Tune Melody[] =
-{ /* freq, ms */
-    {500,100},
-    {300,500},
-    {100,200},
-};
+typedef struct{
+	MELODIES melody;
+	int currentNote;
+} TUNEData;
 
-static void BUZ_Play(void *dataPtr) {
-  int idx = (int)dataPtr;
+static TUNEData start_note_melody = {STANDARD,0};
 
-  BUZ_Beep(Melody[idx].freq, Melody[idx].ms);
-  idx++;
-  if (idx<(sizeof(Melody)/sizeof(Melody[0]))) {
-    TRG_SetTrigger(TRG_BUZ_TUNE, Melody[idx-1].ms/TRG_TICKS_MS, BUZ_Play, (void*)idx);
+static void BUZ_Play(TUNEData *dataPtr) {
+  int idx = dataPtr->currentNote;
+  int melody = dataPtr->melody;
+
+  int current_note_ms = Melody[melody][idx].ms;
+  BUZ_Beep(Melody[melody][idx].freq, Melody[melody][idx].ms);
+  dataPtr->currentNote = ++idx;
+  if(Melody[melody][idx].ms != 0)
+  {
+	  TRG_SetTrigger(TRG_BUZ_TUNE, current_note_ms/TRG_TICKS_MS, (TRG_Callback)BUZ_Play, (void*)dataPtr);
   }
+  /*
+  if (idx<(sizeof(Melody[melody])/sizeof(Melody[melody][0]))) {
+    TRG_SetTrigger(TRG_BUZ_TUNE, Melody[melody][idx-1].ms/TRG_TICKS_MS, (TRG_Callback)BUZ_Play, (void*)dataPtr);
+  }//*/
 }
 
-uint8_t BUZ_PlayTune(void) {
-  return TRG_SetTrigger(TRG_BUZ_TUNE, 1, BUZ_Play, (void*)0);
+uint8_t BUZ_PlayTune(MELODIES melody) {
+  start_note_melody.melody = melody;
+  start_note_melody.currentNote = 0;
+  return TRG_SetTrigger(TRG_BUZ_TUNE, 1, (TRG_Callback)BUZ_Play, (void*)&start_note_melody);
 }
 
 
@@ -109,7 +116,7 @@ uint8_t BUZ_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
     }
   } else if (UTIL1_strcmp((char*)cmd, (char*)"buzzer play tune")==0) {
     *handled = TRUE;
-    return BUZ_PlayTune();
+    return BUZ_PlayTune(STANDARD);
   }
   return ERR_OK;
 }

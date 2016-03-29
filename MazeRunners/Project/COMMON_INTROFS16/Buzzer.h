@@ -10,6 +10,8 @@
 #define BUZZER_H_
 
 #include "Platform.h"
+#include "Tunes.h"
+
 #if PL_CONFIG_HAS_SHELL
   #include "CLS1.h"
 
@@ -35,7 +37,7 @@ uint8_t BUZ_Beep(uint16_t freqHz, uint16_t durationMs);
  * \brief Plays a tune
  * \return ERR_OK or error code
  */
-uint8_t BUZ_PlayTune(void);
+uint8_t BUZ_PlayTune(MELODIES melody);
 
 /*!
  * \brief Initialization of the driver
