@@ -36,49 +36,31 @@
 #define _A4    (440)
 #define _AS4   (466)
 #define _B4    (493)
-
-/*
-#define _C3    (130.81)
-#define _CS3   (138.59)
-#define _D3    (146.83)
-#define _DS3   (155.56)
-#define _E3    (164.81)
-#define _F3    (174.61)
-#define _FS3   (185.00)
-#define _G3    (196.00)
-#define _GS3   (207.65)
-#define _A3    (220.00)
-#define _AS3   (233.08)
-#define _B3    (246.94)
-#define _C4    (261.63)
-#define _CS4   (277.18)
-#define _D4    (293.66)
-#define _DS4   (311.13)
-#define _E4    (329.63)
-#define _F4    (349.23)
-#define _FS4   (369.99)
-#define _G4    (392.00)
-#define _GS4   (415.30)
-#define _A4    (440.00)
-#define _AS4   (466.16)
-#define _B4    (493.88)
-#define _C5    (523.25)
-#define _CS5   (554.37)
-#define _D5    (587.33)
-#define _DS5   (622.25)
-#define _E5    (659.25)
-#define _F5    (698.46)
-#define _FS5   (739.99)
-#define _G5    (783.99)
-#define _GS5   (830.61)
-#define _A5    (880.00)
-#define _AS5   (932.33)
-#define _B5    (987.77)
+#define _C5    (523)
+#define _CS5   (554)
+#define _D5    (587)
+#define _DS5   (622)
+#define _E5    (659)
+#define _F5    (698)
+#define _FS5   (739)
+#define _G5    (783)
+#define _GS5   (830)
+#define _A5    (880)
+#define _AS5   (932)
+#define _B5    (987)
 
 /* definition of length of the notes */
 #define Half_Note	(1000)
 #define Quarter_Note	(500)
+#define Triole (333)
 #define Eighth_Note	(250)
+#define Sixth_Note (125)
+/* dotted notes */
+#define Half_Note_dot (1500)
+#define Quarter_Note_dot (750)
+#define Eighth_Note_dot (375)
+
+/* short break */
 #define Stop (100)
 
 /* end definition of notes */
@@ -90,6 +72,8 @@ typedef enum
 	TETRIS,
 	ENTLEIN,
 	TONLEITER,
+	GAMEOFTHRONE,
+	MARIO,
 	NOF_TUNES
 } MELODIES;
 
