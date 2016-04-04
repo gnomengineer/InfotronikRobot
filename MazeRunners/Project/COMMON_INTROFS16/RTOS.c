@@ -10,7 +10,7 @@
 #include "FRTOS1.h"
 #include "LED.h"
 #include "Event.h"
-#include "Keys.h"
+#include "Key.h"
 #include "Application.h"
 
 static void AppTask(void* param) {
