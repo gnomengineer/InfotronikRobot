@@ -36,6 +36,7 @@
 #define PL_CONFIG_HAS_BUZZER	(1 && defined(PL_LOCAL_HAS_BUZZER))
 #define PL_CONFIG_HAS_SHELL		(1 && defined(PL_LOCAL_HAS_SHELL))
 #define PL_CONFIG_HAS_DEBOUNCE	(1 && defined(PL_LOCAL_HAS_DEBOUNCE))
+#define PL_CONFIG_HAS_RTOS		(1 && defined(PL_LOCAL_HAS_RTOS))
 
 void PL_Init(void);
 void PL_Deinit(void);

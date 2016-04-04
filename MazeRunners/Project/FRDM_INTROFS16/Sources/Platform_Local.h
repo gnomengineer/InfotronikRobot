@@ -17,6 +17,7 @@
 #define PL_LOCAL_HAS_JOYSTICK
 #define PL_LOCAL_HAS_TRIGGER
 #define PL_LOCAL_HAS_DEBOUNCE
+#define PL_LOCAL_HAS_RTOS
 
 #define PL_LOCAL_NOF_LED 		(3)
 #define PL_LOCAL_NOF_KEY 		(7)
