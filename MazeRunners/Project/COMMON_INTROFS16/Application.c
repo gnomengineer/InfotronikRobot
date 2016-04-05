@@ -52,12 +52,19 @@ static int tune_counter = 0;
 
 void APP_Start(void) {
   PL_Init();
+#if PL_CONFIG_HAS_RTOS
+  RTOS_Run();
+#endif
   /* init: turn off */
+  /*
 #if PL_CONFIG_HAS_EVENTS
   EVNT_SetEvent(EVNT_STARTUP);
 #endif
 
+#if PL_CONFIG_HAS_SHELL
   CLS1_SendStr("Hello World\n\r",CLS1_GetStdio()->stdOut);
+#endif
+
   for(;;) {
 #if PL_CONFIG_HAS_KEY
 	KEYDBNC_Process();
@@ -67,10 +74,7 @@ void APP_Start(void) {
 #endif
     WAIT1_Waitms(50);
   }
-
-  for(;;) {
-    /* wait */
-  }
+*/
 }
 
 

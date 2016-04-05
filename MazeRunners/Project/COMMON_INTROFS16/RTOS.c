@@ -16,13 +16,22 @@
 static void AppTask(void* param) {
   (void)param; /* avoid compiler warning */
   EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
+
+
   for(;;) {
-    LED1_Neg();
-    FRTOS1_vTaskDelay(500/portTICK_PERIOD_MS);
+#if PL_CONFIG_HAS_KEY
+	KEYDBNC_Process();
+#endif
+#if PL_CONFIG_HAS_EVENTS
+    EVNT_HandleEvent(APP_HandleEvent,1);
+#endif
+    WAIT1_Waitms(50);
   }
 }
 
 void RTOS_Run(void) {
+  /** set your tasks here **/
+
   FRTOS1_vTaskStartScheduler();  /* does usually not return! */
 }
 

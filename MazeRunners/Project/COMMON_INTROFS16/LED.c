@@ -7,17 +7,17 @@
 
 #include "Platform.h"
 
-#if PL_HAS_LED
+#if PL_CONFIG_HAS_LED
 	#include "LED.h"
 
 void LED_Init() {
-#if PL_NOF_LED >= 1
+#if PL_CONFIG_NOF_LED >= 1
 	LED1_Off();
 #endif
-#if PL_NOF_LED >= 2
+#if PL_CONFIG_NOF_LED >= 2
 	LED2_Off();
 #endif
-#if PL_NOF_LED >= 3
+#if PL_CONFIG_NOF_LED >= 3
 	LED3_Off();
 #endif
 }
