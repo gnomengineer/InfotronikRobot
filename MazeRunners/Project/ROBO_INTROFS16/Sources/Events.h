@@ -39,6 +39,9 @@
 #include "BitIoLdd2.h"
 #include "HF1.h"
 #include "CS1.h"
+#include "TI1.h"
+#include "TimerIntLdd1.h"
+#include "TU1.h"
 #include "SW1.h"
 #include "BitIoLdd3.h"
 #include "CLS1.h"
@@ -51,6 +54,8 @@
 #include "BUZ1.h"
 #include "BitIoLdd4.h"
 #include "FRTOS1.h"
+#include "SYS1.h"
+#include "RTT1.h"
 
 #ifdef __cplusplus
 extern "C" {
