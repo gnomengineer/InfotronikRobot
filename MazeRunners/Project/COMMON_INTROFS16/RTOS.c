@@ -10,10 +10,10 @@
 #include "FRTOS1.h"
 #include "LED.h"
 #include "Event.h"
-#include "Key.h"
+#include "KeyDebounce.h"
 #include "Application.h"
 
-static void Main_Loop_App_Task(void* param) {
+static void Main_Loop_Task(void* param) {
   (void)param; /* avoid compiler warning */
 #if PL_CONFIG_HAS_EVENTS
   EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
@@ -24,19 +24,14 @@ static void Main_Loop_App_Task(void* param) {
 	KEYDBNC_Process();
 #endif
 #if PL_CONFIG_HAS_EVENTS
-    EVNT_HandleEvent(APP_HandleEvent,1);
+    EVNT_HandleEvent(APP_HandleEvent,TRUE);
 #endif
   }
 }
 
-void RTOS_Run(void) {
-  /** set your tasks here **/
-  xTaskCreate(Main_Loop_App_Task,"Main",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,(void*)NULL);
-  FRTOS1_vTaskStartScheduler();  /* does usually not return! */
-}
-
 void RTOS_Init(void) {
   /*! \todo Create tasks here */
+  xTaskCreate(Main_Loop_Task,"Main",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,(void*)NULL);
 }
 
 void RTOS_Deinit(void) {

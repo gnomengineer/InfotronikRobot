@@ -7,6 +7,7 @@
 #include "CLS1.h"
 #include "Buzzer.h"
 #include "Tunes.h"
+#include "FRTOS1.h"
 static int tune_counter = 0;
 
  void APP_HandleEvent(EVNT_Handle event)
@@ -27,7 +28,9 @@ static int tune_counter = 0;
 #if PL_CONFIG_HAS_BUZZER && 0
   		BUZ_PlayTune(TETRIS);
 #endif
+#if PL_CONFIG_HAS_SHELL
   		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
+#endif
   		break;
   	case EVENT_SW2_PRESSED:
   	  	LED1_Off();
@@ -53,7 +56,7 @@ static int tune_counter = 0;
 void APP_Start(void) {
   PL_Init();
 #if PL_CONFIG_HAS_RTOS
-  RTOS_Run();
+  FRTOS1_vTaskStartScheduler();
 #endif
 
   /* init: turn off */

@@ -20,6 +20,9 @@ void PL_Init(void){
 #if PL_CONFIG_HAS_KEY
 	//Key_Init();
 #endif
+#if PL_CONFIG_HAS_RTOS
+	RTOS_Init();
+#endif
 
 }
 
