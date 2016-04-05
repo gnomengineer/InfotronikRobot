@@ -3,7 +3,7 @@
   <Header>
     <Name>FRDM_INTROFS16</Name>
     <SavedBy>Cyrill</SavedBy>
-    <ModificationStamp>18</ModificationStamp>
+    <ModificationStamp>20</ModificationStamp>
     <Date>2016-02-23</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -20959,7 +20959,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>100</Value>
+        <Value>1000</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -21115,7 +21115,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>2048</Value>
+        <Value>8192</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
