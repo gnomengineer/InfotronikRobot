@@ -3,6 +3,12 @@
 #if PL_CONFIG_HAS_LED == 1
 	#include "LED.h"
 #endif
+#if PL_CONFIG_HAS_KEY
+	#include "Key.h"
+#endif
+#if PL_CONFIG_HAS_EVENTS
+	#include "Event.h"
+#endif
 
 void PL_Init(void){
 #if PL_CONFIG_HAS_LED
@@ -12,7 +18,7 @@ void PL_Init(void){
 	EVNT_Init();
 #endif
 #if PL_CONFIG_HAS_KEY
-	Key_Init();
+	//Key_Init();
 #endif
 
 }

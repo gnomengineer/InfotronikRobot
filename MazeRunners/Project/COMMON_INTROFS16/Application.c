@@ -24,7 +24,7 @@ static int tune_counter = 0;
   		break;
   	case EVENT_SW1_PRESSED:
   		LED1_Neg();
-#if PL_CONFIG_HAS_BUZZER
+#if PL_CONFIG_HAS_BUZZER && 0
   		BUZ_PlayTune(TETRIS);
 #endif
   		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
@@ -55,6 +55,7 @@ void APP_Start(void) {
 #if PL_CONFIG_HAS_RTOS
   RTOS_Run();
 #endif
+
   /* init: turn off */
   /*
 #if PL_CONFIG_HAS_EVENTS

@@ -13,7 +13,7 @@
 #if PL_CONFIG_NOF_LED >= 1
 	#include "LEDPin1.h"
 #endif
-#if PL_NOF_LED >= 2
+#if PL_CONFIG_NOF_LED >= 2
 	#include "LEDPin2.h"
 #endif
 #if PL_CONFIG_NOF_LED >= 3

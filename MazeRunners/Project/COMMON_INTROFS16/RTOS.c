@@ -13,10 +13,11 @@
 #include "Key.h"
 #include "Application.h"
 
-static void AppTask(void* param) {
+static void Main_Loop_App_Task(void* param) {
   (void)param; /* avoid compiler warning */
+#if PL_CONFIG_HAS_EVENTS
   EVNT_SetEvent(EVNT_STARTUP); /* set startup event */
-
+#endif
 
   for(;;) {
 #if PL_CONFIG_HAS_KEY
@@ -25,13 +26,12 @@ static void AppTask(void* param) {
 #if PL_CONFIG_HAS_EVENTS
     EVNT_HandleEvent(APP_HandleEvent,1);
 #endif
-    WAIT1_Waitms(50);
   }
 }
 
 void RTOS_Run(void) {
   /** set your tasks here **/
-
+  xTaskCreate(Main_Loop_App_Task,"Main",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,(void*)NULL);
   FRTOS1_vTaskStartScheduler();  /* does usually not return! */
 }
 
