@@ -58,27 +58,6 @@ void APP_Start(void) {
 #if PL_CONFIG_HAS_RTOS
   FRTOS1_vTaskStartScheduler();
 #endif
-
-  /* init: turn off */
-  /*
-#if PL_CONFIG_HAS_EVENTS
-  EVNT_SetEvent(EVNT_STARTUP);
-#endif
-
-#if PL_CONFIG_HAS_SHELL
-  CLS1_SendStr("Hello World\n\r",CLS1_GetStdio()->stdOut);
-#endif
-
-  for(;;) {
-#if PL_CONFIG_HAS_KEY
-	KEYDBNC_Process();
-#endif
-#if PL_CONFIG_HAS_EVENTS
-    EVNT_HandleEvent(APP_HandleEvent,1);
-#endif
-    WAIT1_Waitms(50);
-  }
-*/
 }
 
 
