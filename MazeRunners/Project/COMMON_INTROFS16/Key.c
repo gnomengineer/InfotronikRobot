@@ -12,6 +12,9 @@
 #if PL_CONFIG_HAS_EVENTS
 	#include "Event.h"
 #endif
+#if PL_CONFIG_IS_ROBO_V2
+	#include "PORT_PDD.h"
+#endif
 
 void Key_Scan(void){
 #if PL_CONFIG_NOF_KEYS >= 1
@@ -58,7 +61,12 @@ void Key_Scan(void){
 }
 
 void KEY_Init(){
-	// do nothing
+#if PL_CONFIG_IS_ROBO_V2
+	/* enable and turn on pull-up resistor for PTA14 */
+	PORT_PDD_SetPinPullSelect(PORTA_BASE_PTR, 14, PORT_PDD_PULL_UP);
+	PORT_PDD_SetPinPullEnable(PORTA_BASE_PTR, 14, PORT_PDD_PULL_ENABLE);
+#endif
+
 }
 
 void KEY_Deinit(){

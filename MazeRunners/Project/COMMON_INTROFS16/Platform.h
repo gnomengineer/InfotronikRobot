@@ -11,6 +11,11 @@
 #include "Platform_Local.h"
 #include <stdint.h>
 
+#if defined(PEcfg_RoboV2)
+	#define PL_CONFIG_IS_ROBO_V2
+#endif
+
+
 /*
 #ifdef PL_IS_ROBO
 	#define PL_CONFIG_NOF_LED (2)
