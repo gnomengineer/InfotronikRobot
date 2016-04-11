@@ -23,6 +23,9 @@ void PL_Init(void){
 #if PL_CONFIG_HAS_RTOS
 	RTOS_Init();
 #endif
+#if PL_CONFIG_HAS_SHELL
+	SHELL_Init();
+#endif
 
 }
 
@@ -30,5 +33,8 @@ void PL_Deinit(void){
 #if PL_CONFIG_HAS_LED
 	LED_Deinit();
 	EVNT_Deinit();
+#endif
+#if PL_CONFIG_HAS_SHELL
+	SHELL_Deinit();
 #endif
 }
