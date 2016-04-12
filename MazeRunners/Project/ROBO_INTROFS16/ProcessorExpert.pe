@@ -3,7 +3,7 @@
   <Header>
     <Name>ROBO_INTROFS16</Name>
     <SavedBy>Cyrill</SavedBy>
-    <ModificationStamp>26</ModificationStamp>
+    <ModificationStamp>27</ModificationStamp>
     <Date>2016-02-23</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>41</ProjectCompNumb>
+    <ProjectCompNumb>42</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -22584,6 +22584,117 @@
     <NodeName>FLASH</NodeName>
     <CnfgEnabled>true</CnfgEnabled>
     <TargetCPU>4</TargetCPU>
+    <ConfigurationComment lines_count="0" />
+    <BoolList_FpgaConfig>
+      <Count>0</Count>
+    </BoolList_FpgaConfig>
+    <BoolList_BeanConfig>
+      <Count>18</Count>
+      <ItemId0>2</ItemId0>
+      <Value0>false</Value0>
+      <ItemId1>4</ItemId1>
+      <Value1>true</Value1>
+      <ItemId2>11</ItemId2>
+      <Value2>true</Value2>
+      <ItemId3>13</ItemId3>
+      <Value3>true</Value3>
+      <ItemId4>15</ItemId4>
+      <Value4>true</Value4>
+      <ItemId5>16</ItemId5>
+      <Value5>true</Value5>
+      <ItemId6>17</ItemId6>
+      <Value6>false</Value6>
+      <ItemId7>19</ItemId7>
+      <Value7>false</Value7>
+      <ItemId8>21</ItemId8>
+      <Value8>true</Value8>
+      <ItemId9>23</ItemId9>
+      <Value9>true</Value9>
+      <ItemId10>24</ItemId10>
+      <Value10>true</Value10>
+      <ItemId11>25</ItemId11>
+      <Value11>true</Value11>
+      <ItemId12>26</ItemId12>
+      <Value12>true</Value12>
+      <ItemId13>29</ItemId13>
+      <Value13>true</Value13>
+      <ItemId14>30</ItemId14>
+      <Value14>true</Value14>
+      <ItemId15>32</ItemId15>
+      <Value15>true</Value15>
+      <ItemId16>34</ItemId16>
+      <Value16>true</Value16>
+      <ItemId17>35</ItemId17>
+      <Value17>true</Value17>
+    </BoolList_BeanConfig>
+    <BoolList_TaskConfig>
+      <Count>0</Count>
+    </BoolList_TaskConfig>
+    <BoolList_ProgConfig>
+      <Count>0</Count>
+    </BoolList_ProgConfig>
+    <ItemState>
+      <ItemSymbol>Optimizations</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      <Expanded>true</Expanded>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>Not_for_MPC512x</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>O_NoRangeChck</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      <Index>1</Index>
+      <Value>false</Value>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>O_NoEnableTest</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      <Index>1</Index>
+      <Value>false</Value>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>O_NoSpeedTest</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      <Index>1</Index>
+      <Value>false</Value>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>O_NoInitRegReset</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      <Index>1</Index>
+      <Value>false</Value>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>Not_for_MPC5500_MCF</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+    </ItemState>
+    <ItemState>
+      <ItemSymbol>O_PIB_full_Init</ItemSymbol>
+      <ReadOnly>false</ReadOnly>
+      <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
+      <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      <Index>1</Index>
+      <Value>false</Value>
+    </ItemState>
+  </Configuration>
+  <Configuration>
+    <CompNumb>41</CompNumb>
+    <NodeName>RoboV2</NodeName>
+    <CnfgEnabled>false</CnfgEnabled>
+    <TargetCPU>0</TargetCPU>
     <ConfigurationComment lines_count="0" />
     <BoolList_FpgaConfig>
       <Count>0</Count>
