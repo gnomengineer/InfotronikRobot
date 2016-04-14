@@ -20,6 +20,7 @@
 #define PL_LOCAL_HAS_SHELL
 #define PL_LOCAL_HAS_DEBOUNCE
 #define PL_LOCAL_HAS_RTOS
+#define PL_LOCAL_HAS_BLUETOOTH
 
 #define PL_LOCAL_NOF_LED 		(2)
 #define PL_LOCAL_NOF_KEY 		(1)
