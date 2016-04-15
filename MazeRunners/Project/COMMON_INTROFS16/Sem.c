@@ -24,8 +24,15 @@
 
 #if USE_SEMAPHORES
 static void vSlaveTask(void *pvParameters) {
+  xSemaphoreHandle sem = (xSemaphoreHandle)pvParameters;
   for(;;) {
     /*! \todo Implement functionality */
+	  if(xSemaphoreTake(sem,portMAX_DELAY)==pdPASS)
+	  {
+		  LED3_Neg();
+		  LED2_Neg();
+
+	  }
   }
 }
 
