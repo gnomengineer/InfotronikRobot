@@ -3,7 +3,7 @@
   <Header>
     <Name>ROBO_INTROFS16</Name>
     <SavedBy>Cyrill</SavedBy>
-    <ModificationStamp>27</ModificationStamp>
+    <ModificationStamp>29</ModificationStamp>
     <Date>2016-02-23</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -11976,7 +11976,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>JTAGTDIPin</ItemSymbol>
@@ -11997,7 +11997,7 @@
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>JTAGTDOPin</ItemSymbol>

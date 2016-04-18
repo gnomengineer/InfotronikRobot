@@ -3,7 +3,7 @@
   <Header>
     <Name>FRDM_INTROFS16</Name>
     <SavedBy>Cyrill</SavedBy>
-    <ModificationStamp>26</ModificationStamp>
+    <ModificationStamp>27</ModificationStamp>
     <Date>2016-02-23</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -17571,7 +17571,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>medium priority</Value>
+        <Value>maximal priority</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>DSPgrp11</ItemSymbol>
@@ -17596,7 +17596,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>medium priority</Value>
+        <Value>maximal priority</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>DSPgrp110</ItemSymbol>
@@ -17626,7 +17626,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>medium priority</Value>
+        <Value>maximal priority</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>DSPgrp1100</ItemSymbol>
