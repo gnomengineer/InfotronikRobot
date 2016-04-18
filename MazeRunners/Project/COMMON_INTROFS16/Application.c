@@ -8,6 +8,7 @@
 #include "Buzzer.h"
 #include "Tunes.h"
 #include "FRTOS1.h"
+#include "Shell.h"
 static int tune_counter = 0;
 
  void APP_HandleEvent(EVNT_Handle event)
@@ -29,7 +30,8 @@ static int tune_counter = 0;
   		BUZ_PlayTune(MARIO);
 #endif
 #if PL_CONFIG_HAS_SHELL
-  		CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
+  		//CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
+  		SHELL_SendString("SW1 Pressed\n\r");
 #endif
   		break;
   	case EVENT_SW2_PRESSED:
