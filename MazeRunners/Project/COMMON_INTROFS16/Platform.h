@@ -15,18 +15,7 @@
 	#define PL_CONFIG_IS_ROBO_V2
 #endif
 
-
-/*
-#ifdef PL_IS_ROBO
-	#define PL_CONFIG_NOF_LED (2)
-#define PL_NOF_KEY (1)
-#elif defined(PL_IS_FRDM)
-	#define PL_CONFIG_NOF_LED (3)
-	#define PL_NOF_KEY (7)
-#else
-	#error "Unknown board?"
-#endif
-//*/
+#define PL_CONFIG_IS_ROBO PL_LOCAL_IS_ROBO
 
 #define PL_CONFIG_NOF_LED 		PL_LOCAL_NOF_LED
 #define PL_CONFIG_NOF_KEYS		PL_LOCAL_NOF_KEY
@@ -47,7 +36,7 @@
 #define PL_CONFIG_HAS_SHELL_QUEUE       (1 && PL_CONFIG_HAS_SHELL) /* enable shell queueing */
 #define PL_CONFIG_SQUEUE_SINGLE_CHAR    (0 && PL_CONFIG_HAS_SHELL_QUEUE) /* using single character shell queue */
 #define PL_CONFIG_HAS_SEMAPHORE         (1) /* semaphore tests */
-#define PL_CONFIG_HAS_REFLECTANCE       (1 && PL_CONFIG_BOARD_IS_ROBO)
+#define PL_CONFIG_HAS_REFLECTANCE       (1 && PL_CONFIG_IS_ROBO)
 
 #define PL_CONFIG_HAS_BLUETOOTH         (0 && defined(PL_LOCAL_HAS_BLUETOOTH))
 #define PL_CONFIG_HAS_MOTOR             (1 && defined(PL_LOCAL_HAS_MOTOR))
