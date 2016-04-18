@@ -29,7 +29,6 @@ static void vSlaveTask(void *pvParameters) {
     /*! \todo Implement functionality */
 	  if(xSemaphoreTake(sem,portMAX_DELAY)==pdPASS)
 	  {
-		  LED3_Neg();
 		  LED2_Neg();
 
 	  }
