@@ -1,0 +1,7 @@
+* Warum blockt die SQUEUE die Shell ausgabe
+
+* Queue Table zeigt keine Queues an, ist etwas vergessen gegangen
+
+* BT Shell funktioniert nicht
+
+* Semaphore toggelt LED nicht (gleicher Code wie Instructor)
