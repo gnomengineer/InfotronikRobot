@@ -26,7 +26,9 @@ void PL_Init(void){
 #if PL_CONFIG_HAS_SHELL
 	SHELL_Init();
 #endif
-
+#if PL_CONFIG_HAS_SEMAPHORE
+	SEM_Init();
+#endif
 }
 
 void PL_Deinit(void){
