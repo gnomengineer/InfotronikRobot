@@ -1,7 +1,14 @@
-* Warum blockt die SQUEUE die Shell ausgabe
+Q: Warum blockiert die SQUEUE die Shell ausgabe?
+A: Die Interrupt Priority war >= Max Sys Call Prio (Wurde vom Scheduler blockiert) und SQUEUE_Init() aufrufen.
 
-* Queue Table zeigt keine Queues an, ist etwas vergessen gegangen
 
-* BT Shell funktioniert nicht
+Q: Queue Table zeigt keine Queues an. Ist etwas vergessen gegangen?
+A: Queue table zeigt nur wenn "Pause"
 
-* Semaphore toggelt LED nicht (gleicher Code wie Instructor)
+
+Q: Warum funktionier BT Shell nicht?
+A: falscher UART Channel und Pins, SQUEUE nicht initialisiert
+
+
+Q: Semaphore toggelt LED nicht (gleicher Code wie Instructor)
+A: SEM_Init() aufrufen
