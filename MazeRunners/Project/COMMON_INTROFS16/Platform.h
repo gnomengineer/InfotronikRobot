@@ -35,10 +35,10 @@
 #define PL_CONFIG_HAS_SEGGER_RTT        (1 && PL_CONFIG_HAS_SHELL) /* using RTT with shell */
 #define PL_CONFIG_HAS_SHELL_QUEUE       (1 && PL_CONFIG_HAS_SHELL) /* enable shell queueing */
 #define PL_CONFIG_SQUEUE_SINGLE_CHAR    (0 && PL_CONFIG_HAS_SHELL_QUEUE) /* using single character shell queue */
-#define PL_CONFIG_HAS_SEMAPHORE         (1) /* semaphore tests */
+#define PL_CONFIG_HAS_SEMAPHORE         (0) /* semaphore tests */
 #define PL_CONFIG_HAS_REFLECTANCE       (1 && PL_CONFIG_IS_ROBO)
 
-#define PL_CONFIG_HAS_BLUETOOTH         (0 && defined(PL_LOCAL_HAS_BLUETOOTH))
+#define PL_CONFIG_HAS_BLUETOOTH         (1 && defined(PL_LOCAL_HAS_BLUETOOTH))
 #define PL_CONFIG_HAS_MOTOR             (1 && defined(PL_LOCAL_HAS_MOTOR))
 #define PL_CONFIG_HAS_MCP4728           (0)
 #define PL_CONFIG_HAS_QUADRATURE        (0)

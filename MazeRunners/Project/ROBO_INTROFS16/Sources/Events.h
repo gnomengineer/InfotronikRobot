@@ -69,6 +69,15 @@
 #include "BitIoLdd9.h"
 #include "IR6.h"
 #include "BitIoLdd10.h"
+#include "DIRL.h"
+#include "BitIoLdd11.h"
+#include "PWMR.h"
+#include "PwmLdd1.h"
+#include "DIRR.h"
+#include "BitIoLdd12.h"
+#include "PWML.h"
+#include "PwmLdd2.h"
+#include "MOTTU.h"
 
 #ifdef __cplusplus
 extern "C" {

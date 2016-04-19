@@ -47,8 +47,8 @@ void RTOS_Init(void) {
   /*! \todo Create tasks here */
 	static int led1 = 1;
 	static int led2 = 2;
-	xTaskCreate(Blinky_Task, "Blinky1", configMINIMAL_STACK_SIZE+50,(void*)&led1,tskIDLE_PRIORITY,(void*)NULL);
-	xTaskCreate(Blinky_Task, "Blinky2", configMINIMAL_STACK_SIZE+50,(void*)&led2,tskIDLE_PRIORITY+1,(void*)NULL);
+	//xTaskCreate(Blinky_Task, "Blinky1", configMINIMAL_STACK_SIZE+50,(void*)&led1,tskIDLE_PRIORITY,(void*)NULL);
+	//xTaskCreate(Blinky_Task, "Blinky2", configMINIMAL_STACK_SIZE+50,(void*)&led2,tskIDLE_PRIORITY+1,(void*)NULL);
   xTaskCreate(Main_Loop_Task,"Main",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,(void*)NULL);
 }
 
