@@ -78,6 +78,16 @@
 #include "PWML.h"
 #include "PwmLdd2.h"
 #include "MOTTU.h"
+#include "QuadLeft.h"
+#include "C11.h"
+#include "BitIoLdd13.h"
+#include "C21.h"
+#include "BitIoLdd14.h"
+#include "QuadRight.h"
+#include "C12.h"
+#include "BitIoLdd15.h"
+#include "C22.h"
+#include "BitIoLdd16.h"
 
 #ifdef __cplusplus
 extern "C" {
