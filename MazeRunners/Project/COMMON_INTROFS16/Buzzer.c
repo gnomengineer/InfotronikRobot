@@ -117,7 +117,11 @@ uint8_t BUZ_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
     }
   } else if (UTIL1_strcmp((char*)cmd, (char*)"buzzer play tune")==0) {
     *handled = TRUE;
-    return BUZ_PlayTune(STANDARD);
+    if(tune == NOF_TUNES)
+    {
+    	tune = 0;
+    }
+    return BUZ_PlayTune(tune++);
   }
   return ERR_OK;
 }
@@ -129,6 +133,7 @@ void BUZ_Deinit(void) {
 
 void BUZ_Init(void) {
   BUZ1_SetVal(); /* turn buzzer off */
+  static int8_t tune = 0;
   trgInfo.buzPeriodTicks = 0;
   trgInfo.buzIterationCntr = 0;
 }
