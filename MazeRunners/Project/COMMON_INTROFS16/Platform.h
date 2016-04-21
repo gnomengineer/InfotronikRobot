@@ -9,10 +9,11 @@
 #define SOURCES_COMMON_INTROFS16_PLATFORM_H_
 
 #include "Platform_Local.h"
+#include "Cpu.h"
 #include <stdint.h>
 
 #if defined(PEcfg_RoboV2)
-	#define PL_CONFIG_IS_ROBO_V2
+	#define PL_CONFIG_IS_ROBO_V2 (1)
 #endif
 
 #define PL_CONFIG_IS_ROBO PL_LOCAL_IS_ROBO

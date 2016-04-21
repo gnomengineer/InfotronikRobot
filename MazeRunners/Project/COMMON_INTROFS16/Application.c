@@ -9,6 +9,9 @@
 #include "Tunes.h"
 #include "FRTOS1.h"
 #include "Shell.h"
+#if PL_CONFIG_IS_ROBO_V2
+	#include "PORT_PDD.h"
+#endif
 static int tune_counter = 0;
 
  void APP_HandleEvent(EVNT_Handle event)
@@ -56,6 +59,17 @@ static int tune_counter = 0;
   }
 
 void APP_Start(void) {
+#if PL_CONFIG_IS_ROBO_V2
+	  /* pull-ups for Quadrature Encoder Pins */
+	  PORT_PDD_SetPinPullSelect(PORTC_BASE_PTR, 10, PORT_PDD_PULL_UP);
+	  PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 10, PORT_PDD_PULL_ENABLE);
+	  PORT_PDD_SetPinPullSelect(PORTC_BASE_PTR, 11, PORT_PDD_PULL_UP);
+	  PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 11, PORT_PDD_PULL_ENABLE);
+	  PORT_PDD_SetPinPullSelect(PORTC_BASE_PTR, 16, PORT_PDD_PULL_UP);
+	  PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 16, PORT_PDD_PULL_ENABLE);
+	  PORT_PDD_SetPinPullSelect(PORTC_BASE_PTR, 17, PORT_PDD_PULL_UP);
+	  PORT_PDD_SetPinPullEnable(PORTC_BASE_PTR, 17, PORT_PDD_PULL_ENABLE);
+#endif
   PL_Init();
 #if PL_CONFIG_HAS_RTOS
   FRTOS1_vTaskStartScheduler();
