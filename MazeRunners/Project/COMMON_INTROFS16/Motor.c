@@ -120,7 +120,7 @@ static void MOT_PrintHelp(const CLS1_StdIOType *io) {
   CLS1_SendHelpStr((unsigned char*)"  duty <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  duty right <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  duty left <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
-  CLS1_SendHelpStr((unsigned char*)"  stop>", (unsigned char*)"Stop both motors\r\n", io->stdOut);
+  CLS1_SendHelpStr((unsigned char*)"  stop", (unsigned char*)"Stop both motors\r\n", io->stdOut);
 }
 
 static void MOT_PrintStatus(const CLS1_StdIOType *io) {
