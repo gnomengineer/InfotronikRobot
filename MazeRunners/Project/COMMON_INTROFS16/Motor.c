@@ -118,8 +118,8 @@ static void MOT_PrintHelp(const CLS1_StdIOType *io) {
   CLS1_SendHelpStr((unsigned char*)"  (L|R) forward|backward", (unsigned char*)"Change motor direction\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  (L|R) duty <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  duty <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
-  CLS1_SendHelpStr((unsigned char*)"  duty right <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
-  CLS1_SendHelpStr((unsigned char*)"  duty left <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
+  CLS1_SendHelpStr((unsigned char*)"  right duty <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
+  CLS1_SendHelpStr((unsigned char*)"  left duty <number>", (unsigned char*)"Change motor PWM (-100..+100)\r\n", io->stdOut);
   CLS1_SendHelpStr((unsigned char*)"  stop", (unsigned char*)"Stop both motors\r\n", io->stdOut);
 }
 
@@ -170,6 +170,7 @@ uint8_t MOT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
   } else if (UTIL1_strcmp((char*)cmd, (char*)"motor R backward")==0) {
     MOT_SetDirection(&motorR, MOT_DIR_BACKWARD);
     *handled = TRUE;
+
   } else if (UTIL1_strncmp((char*)cmd, (char*)"motor L duty ", sizeof("motor L duty ")-1)==0) {
     p = cmd+sizeof("motor L duty");
     if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
@@ -188,45 +189,42 @@ uint8_t MOT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
       CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
       res = ERR_FAILED;
     }
-  }
-  else if (UTIL1_strncmp((char*)cmd, (char*)"motor duty ", sizeof("motor duty ")-1)==0) {
-      p = cmd+sizeof("motor duty");
-      if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
-        MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)val);
-        MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)val);
-        *handled = TRUE;
-      } else {
-        CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
-        res = ERR_FAILED;
-      }
-  }
-      else if (UTIL1_strncmp((char*)cmd, (char*)"motor left duty ", sizeof("motor left duty ")-1)==0) {
-            p = cmd+sizeof("motor left duty");
-            if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
-              MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)val);
-              MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)-val);
-              *handled = TRUE;
-            } else {
-              CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
-              res = ERR_FAILED;
-            }
+  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor duty ", sizeof("motor duty ")-1)==0) {
+    p = cmd+sizeof("motor duty");
+    if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
+      MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)val);
+      MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)val);
+      *handled = TRUE;
+    } else {
+      CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
+      res = ERR_FAILED;
     }
-      else if (UTIL1_strncmp((char*)cmd, (char*)"motor right duty ", sizeof("motor right duty ")-1)==0) {
-                  p = cmd+sizeof("motor right duty");
-                  if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
-                    MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)-val);
-                    MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)val);
-                    *handled = TRUE;
-                  } else {
-                    CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
-                    res = ERR_FAILED;
-                  }
-          }
-  else if (UTIL1_strncmp((char*)cmd, (char*)"motor stop", sizeof("motor stop")-1)==0) {
-        MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)0);
-        MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)0);
-        *handled = TRUE;
+  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor left duty ", sizeof("motor left duty ")-1)==0) {
+    p = cmd+sizeof("motor left duty");
+    if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
+      MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)val);
+      MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)-val);
+      *handled = TRUE;
+    } else {
+      CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
+      CLS1_SendStr((unsigned char*)val, io->stdErr);
+      res = ERR_FAILED;
     }
+  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor right duty ", sizeof("motor right duty ")-1)==0) {
+    p = cmd+sizeof("motor right duty");
+    if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
+      MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)-val);
+      MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)val);
+      *handled = TRUE;
+    } else {
+      CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
+      res = ERR_FAILED;
+    }
+  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor stop", sizeof("motor stop")-1)==0) {
+    MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)0);
+    MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)0);
+    *handled = TRUE;
+  }
   return res;
 }
 #endif /* PL_CONFIG_HAS_SHELL */

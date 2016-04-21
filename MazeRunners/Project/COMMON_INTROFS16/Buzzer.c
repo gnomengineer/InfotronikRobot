@@ -117,11 +117,11 @@ uint8_t BUZ_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
     }
   } else if (UTIL1_strcmp((char*)cmd, (char*)"buzzer play tune")==0) {
     *handled = TRUE;
-    if(tune == NOF_TUNES)
-    {
-    	tune = 0;
-    }
-    return BUZ_PlayTune(tune++);
+    //if(tune == NOF_TUNES)
+    //{
+    //	tune = 0;
+    //}
+    return BUZ_PlayTune(MARIO);
   }
   return ERR_OK;
 }
