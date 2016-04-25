@@ -22,6 +22,7 @@
 #define PL_LOCAL_HAS_RTOS
 #define PL_LOCAL_HAS_BLUETOOTH
 #define PL_LOCAL_HAS_MOTOR
+#define PL_LOCAL_HAS_QUADRATURE
 
 #define PL_LOCAL_NOF_LED 		(2)
 #define PL_LOCAL_NOF_KEY 		(1)
