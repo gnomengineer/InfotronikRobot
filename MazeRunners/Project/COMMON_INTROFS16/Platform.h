@@ -11,6 +11,7 @@
 #include "Platform_Local.h"
 #include "Cpu.h"
 #include <stdint.h>
+#include <stdbool.h>
 
 #if defined(PEcfg_RoboV2)
 	#define PL_CONFIG_IS_ROBO_V2 (1)
