@@ -44,7 +44,7 @@
 #define PL_CONFIG_HAS_MCP4728           (0)
 #define PL_CONFIG_HAS_QUADRATURE        (1)
 #define PL_CONFIG_HAS_QUAD_CALIBRATION  (0)
-#define PL_CONFIG_HAS_MOTOR_TACHO       (0)
+#define PL_CONFIG_HAS_MOTOR_TACHO       (1 && PL_CONFIG_HAS_QUADRATURE)
 #define PL_CONFIG_HAS_PID               (0)
 #define PL_CONFIG_HAS_DRIVE             (0)
 #define PL_CONFIG_HAS_TURN              (0)
