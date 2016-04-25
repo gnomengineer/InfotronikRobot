@@ -41,7 +41,7 @@ static int tune_counter = 0;
   	  	LED1_Off();
   	  	break;
   	case EVENT_SW1_LPRESSED:
-#if PL_CONFIG_HAS_BUZZER
+#if PL_CONFIG_HAS_BUZZER && 0
   		if(tune_counter < NOF_TUNES)
   		{
   			BUZ_PlayTune(tune_counter);
@@ -52,6 +52,7 @@ static int tune_counter = 0;
   			tune_counter = 0;
   		}
 #endif
+  		SHELL_SendString("Long Press\n\r");
   	default:
   		//do nothing
   		break;

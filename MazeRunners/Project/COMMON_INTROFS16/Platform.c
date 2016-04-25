@@ -18,6 +18,9 @@ void PL_Init(void){
 	EVNT_Init();
 #endif
 #if PL_CONFIG_HAS_KEY
+	KEY_Init();
+#endif
+#if PL_CONFIG_HAS_DEBOUNCE
 	KEYDBNC_Init();
 #endif
 #if PL_CONFIG_HAS_RTOS
