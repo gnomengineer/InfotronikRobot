@@ -8,7 +8,7 @@
 #ifndef SOURCES_PLATFORM_LOCAL_H_
 #define SOURCES_PLATFORM_LOCAL_H_
 
-#define PL_IS_FRDM (1)
+#define PL_LOCAL_IS_FRDM (1)
 
 #define PL_LOCAL_HAS_LED
 #define PL_LOCAL_HAS_KEY
