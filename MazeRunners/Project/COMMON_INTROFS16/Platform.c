@@ -41,6 +41,12 @@ void PL_Init(void){
 #if PL_CONFIG_HAS_REFLECTANCE
 	REF_Init();
 #endif
+#if PL_CONFIG_HAS_PID
+	PID_Init();
+#endif
+#if PL_CONFIG_HAS_DRIVE
+	DRV_Init();
+#endif
 }
 
 void PL_Deinit(void){
