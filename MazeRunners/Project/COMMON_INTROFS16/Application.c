@@ -44,26 +44,31 @@ static int tune_counter = 0;
   	  	LED1_Off();
 #if PL_CONFIG_IS_FRDM
 		//@TODO send "motor R turn <val>" to robot
+  	  	SHELL_SendString("SW2 Pressed\n\r");
 #endif
   	  	break;
   	case EVENT_SW3_PRESSED:
 #if PL_CONFIG_IS_FRDM
 		//@TODO send "motor duty -20" to robot
+  		SHELL_SendString("SW3 Pressed\n\r");
 #endif
   		break;
   	case EVENT_SW4_PRESSED:
 #if PL_CONFIG_IS_FRDM
 		//@TODO send "motor L turn <val>" to robot
+  		SHELL_SendString("SW4 Pressed\n\r");
 #endif
   		break;
   	case EVENT_SW5_PRESSED:
 #if PL_CONFIG_IS_FRDM
 		//@TODO send "motor stop" to robot
+  		SHELL_SendString("SW5 Pressed\n\r");
 #endif
   		break;
   	case EVENT_SW6_PRESSED:
 #if PL_CONFIG_IS_FRDM
 		//@TODO send "maze start" to robot
+  		SHELL_SendString("SW6 Pressed\n\r");
 #endif
   		break;
   	case EVENT_SW1_LPRESSED:
