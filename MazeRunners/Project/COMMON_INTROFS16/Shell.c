@@ -47,7 +47,7 @@
   #include "Ultrasonic.h"
 #endif
 #if PL_CONFIG_HAS_PID
-  #include "PID.h"
+  #include "Pid.h"
 #endif
 #if PL_CONFIG_HAS_DRIVE
   #include "Drive.h"
