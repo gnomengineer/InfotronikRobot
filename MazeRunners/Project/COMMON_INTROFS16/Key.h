@@ -92,9 +92,9 @@ void Key_Open();
 
 void Key_Close();
 
-void Key_Init();
+void KEY_Init();
 
-void Key_Deinit();
+void KEY_Deinit();
 
 #endif
 #endif /* SOURCES_COMMON_INTROFS16_KEY_H_ */
