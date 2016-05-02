@@ -40,7 +40,9 @@
 #if PL_CONFIG_HAS_LINE_FOLLOW
 	#include "LineFollow.h"
 #endif
-
+#if PL_CONFIG_HAS_RADIO
+	#include "RNet_App.h"
+#endif
 
 /* Platform initialization */
 void PL_Init(void){
@@ -82,6 +84,9 @@ void PL_Init(void){
 #endif
 #if PL_CONFIG_HAS_LINE_FOLLOW
 	LF_Init();
+#endif
+#if PL_CONFIG_HAS_RADIO
+	RNET1_Init();
 #endif
 }
 
