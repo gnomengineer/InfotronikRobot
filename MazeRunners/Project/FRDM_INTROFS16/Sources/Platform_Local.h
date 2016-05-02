@@ -21,7 +21,7 @@
 #define PL_LOCAL_HAS_SHELL
 /*#define PL_LOCAL_HAS_QUADRATURE*/
 
-#define PL_LOCAL_NOF_LED 		(3)
+#define PL_LOCAL_NOF_LED 		(2)
 #define PL_LOCAL_NOF_KEY 		(7)
 
 
