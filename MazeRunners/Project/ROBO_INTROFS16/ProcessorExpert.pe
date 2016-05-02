@@ -3,7 +3,7 @@
   <Header>
     <Name>ROBO_INTROFS16</Name>
     <SavedBy>Cyrill</SavedBy>
-    <ModificationStamp>75</ModificationStamp>
+    <ModificationStamp>78</ModificationStamp>
     <Date>2016-02-23</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -26850,7 +26850,7 @@
         <ItemSymbol>Serial</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>RTT1</Value>
+        <Value>BT1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ConsoleSempahore</ItemSymbol>
@@ -55955,7 +55955,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>42</Value>
+        <Value>8</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -56276,7 +56276,7 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>ADC0_SE14/PTC0/SPI0_PCS4/PDB0_EXTRG/FB_AD14/I2S0_TXD1</Value>
+              <Value>ADC1_SE14/PTB10/SPI1_PCS0/UART3_RX/FB_AD19/FTM0_FLT1</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>
@@ -56322,7 +56322,7 @@
                     <ItemSymbol>_Pin</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
-                    <Value>ADC0_SE14/PTC0/SPI0_PCS4/PDB0_EXTRG/FB_AD14/I2S0_TXD1</Value>
+                    <Value>ADC1_SE14/PTB10/SPI1_PCS0/UART3_RX/FB_AD19/FTM0_FLT1</Value>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>

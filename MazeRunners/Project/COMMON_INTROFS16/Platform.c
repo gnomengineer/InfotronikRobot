@@ -86,7 +86,8 @@ void PL_Init(void){
 	LF_Init();
 #endif
 #if PL_CONFIG_HAS_RADIO
-	RNET1_Init();
+	//RNET1_Init();
+	RNETA_Init();
 #endif
 }
 
