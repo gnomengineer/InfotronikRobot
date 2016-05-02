@@ -3,7 +3,7 @@
   <Header>
     <Name>ROBO_INTROFS16</Name>
     <SavedBy>Cyrill</SavedBy>
-    <ModificationStamp>73</ModificationStamp>
+    <ModificationStamp>75</ModificationStamp>
     <Date>2016-02-23</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>297</ProjectCompNumb>
+    <ProjectCompNumb>311</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -22588,11 +22588,11 @@
       <Value35>true</Value35>
       <ItemId36>245</ItemId36>
       <Value36>true</Value36>
-      <ItemId37>254</ItemId37>
+      <ItemId37>297</ItemId37>
       <Value37>true</Value37>
-      <ItemId38>255</ItemId38>
+      <ItemId38>298</ItemId38>
       <Value38>true</Value38>
-      <ItemId39>260</ItemId39>
+      <ItemId39>303</ItemId39>
       <Value39>true</Value39>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
@@ -22743,11 +22743,11 @@
       <Value35>true</Value35>
       <ItemId36>245</ItemId36>
       <Value36>false</Value36>
-      <ItemId37>254</ItemId37>
+      <ItemId37>297</ItemId37>
       <Value37>true</Value37>
-      <ItemId38>255</ItemId38>
+      <ItemId38>298</ItemId38>
       <Value38>true</Value38>
-      <ItemId39>260</ItemId39>
+      <ItemId39>303</ItemId39>
       <Value39>true</Value39>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
@@ -22898,11 +22898,11 @@
       <Value35>true</Value35>
       <ItemId36>245</ItemId36>
       <Value36>true</Value36>
-      <ItemId37>254</ItemId37>
+      <ItemId37>297</ItemId37>
       <Value37>true</Value37>
-      <ItemId38>255</ItemId38>
+      <ItemId38>298</ItemId38>
       <Value38>true</Value38>
-      <ItemId39>260</ItemId39>
+      <ItemId39>303</ItemId39>
       <Value39>true</Value39>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
@@ -55908,7 +55908,7 @@
     <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>RNet</BeanType>
     <Name>RNET1</Name>
-    <CompNumb>254</CompNumb>
+    <CompNumb>297</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>RNet</IconName>
@@ -55955,7 +55955,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>8</Value>
+        <Value>42</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -56222,7 +56222,7 @@
     <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>nRF24L01</BeanType>
     <Name>RF1</Name>
-    <CompNumb>255</CompNumb>
+    <CompNumb>298</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>nRF24L01</IconName>
@@ -56256,7 +56256,7 @@
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
           <Name>CE1</Name>
-          <CompNumb>262</CompNumb>
+          <CompNumb>305</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -56276,7 +56276,7 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>ADC0_DP2/ADC1_SE6a/PTE2/LLWU_P1/SPI1_SCK/UART1_CTS_b/SDHC0_DCLK/TRACE_D2</Value>
+              <Value>ADC0_SE14/PTC0/SPI0_PCS4/PDB0_EXTRG/FB_AD14/I2S0_TXD1</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>
@@ -56302,7 +56302,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd20</Name>
-                <CompNumb>263</CompNumb>
+                <CompNumb>306</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -56322,7 +56322,7 @@
                     <ItemSymbol>_Pin</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
-                    <Value>ADC0_DP2/ADC1_SE6a/PTE2/LLWU_P1/SPI1_SCK/UART1_CTS_b/SDHC0_DCLK/TRACE_D2</Value>
+                    <Value>ADC0_SE14/PTC0/SPI0_PCS4/PDB0_EXTRG/FB_AD14/I2S0_TXD1</Value>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -56852,7 +56852,7 @@
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
           <Name>CSN1</Name>
-          <CompNumb>264</CompNumb>
+          <CompNumb>307</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -56872,7 +56872,7 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>PTE4/LLWU_P2/SPI1_PCS0/UART3_TX/SDHC0_D3/TRACE_D0</Value>
+              <Value>ADC0_SE8/ADC1_SE8/PTB0/LLWU_P5/I2C0_SCL/FTM1_CH0/FTM1_QD_PHA</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>
@@ -56898,7 +56898,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd21</Name>
-                <CompNumb>265</CompNumb>
+                <CompNumb>308</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -56918,7 +56918,7 @@
                     <ItemSymbol>_Pin</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
-                    <Value>PTE4/LLWU_P2/SPI1_PCS0/UART3_TX/SDHC0_D3/TRACE_D0</Value>
+                    <Value>ADC0_SE8/ADC1_SE8/PTB0/LLWU_P5/I2C0_SCL/FTM1_CH0/FTM1_QD_PHA</Value>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -57506,7 +57506,7 @@
           <ComponentUUID>com.freescale.processorexpert.extint</ComponentUUID>
           <BeanType>ExtInt</BeanType>
           <Name>IRQ1</Name>
-          <CompNumb>266</CompNumb>
+          <CompNumb>309</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>EXTINT</IconName>
@@ -57526,7 +57526,7 @@
               <ItemSymbol>_Pin</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>PTE5/SPI1_PCS2/UART3_RX/SDHC0_D2/FTM3_CH0</Value>
+              <Value>ADC0_SE9/ADC1_SE9/PTB1/I2C0_SDA/FTM1_CH1/FTM1_QD_PHB</Value>
               <SharedPrphMode>false</SharedPrphMode>
             </ItemState>
             <ItemState>
@@ -57552,7 +57552,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.extint_ldd</ComponentUUID>
                 <BeanType>ExtInt_LDD</BeanType>
                 <Name>ExtIntLdd1</Name>
-                <CompNumb>267</CompNumb>
+                <CompNumb>310</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>ExtInt_LDD</IconName>
@@ -57572,7 +57572,7 @@
                     <ItemSymbol>_Pin</ItemSymbol>
                     <ReadOnly>false</ReadOnly>
                     <UserReadOnly>false</UserReadOnly>
-                    <Value>PTE5/SPI1_PCS2/UART3_RX/SDHC0_D2/FTM3_CH0</Value>
+                    <Value>ADC0_SE9/ADC1_SE9/PTB1/I2C0_SDA/FTM1_CH1/FTM1_QD_PHB</Value>
                     <SharedPrphMode>false</SharedPrphMode>
                   </ItemState>
                   <ItemState>
@@ -57590,7 +57590,7 @@
                   </ItemState>
                   <ItemState>
                     <ItemSymbol>Int</ItemSymbol>
-                    <Value>INT_PORTE</Value>
+                    <Value>INT_PORTB</Value>
                   </ItemState>
                   <ItemState>
                     <ItemSymbol>InitPriority</ItemSymbol>
@@ -57841,7 +57841,7 @@
             </ItemState>
             <ItemState>
               <ItemSymbol>Int</ItemSymbol>
-              <Value>INT_PORTE</Value>
+              <Value>INT_PORTB</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>InitPriority</ItemSymbol>
@@ -58502,7 +58502,7 @@
     <ComponentUUID>com.freescale.processorexpert.synchromaster</ComponentUUID>
     <BeanType>SynchroMaster</BeanType>
     <Name>SM1</Name>
-    <CompNumb>260</CompNumb>
+    <CompNumb>303</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
     <IconName>PHONE</IconName>
@@ -59311,7 +59311,7 @@
           <ComponentUUID>com.freescale.processorexpert.ldd.spimaster_ldd</ComponentUUID>
           <BeanType>SPIMaster_LDD</BeanType>
           <Name>SMasterLdd1</Name>
-          <CompNumb>261</CompNumb>
+          <CompNumb>304</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>PHONE_LDD</IconName>
