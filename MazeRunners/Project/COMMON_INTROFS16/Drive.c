@@ -107,6 +107,7 @@ static bool match(int16_t pos, int16_t target) {
 }
 
 bool DRV_HasTurned(void) {
+  /* @todo: you may improve this */
   int16_t pos;
 
   if (FRTOS1_uxQueueMessagesWaiting(DRV_Queue)>0) {
