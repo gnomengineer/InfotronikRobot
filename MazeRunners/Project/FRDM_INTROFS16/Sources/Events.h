@@ -37,8 +37,6 @@
 #include "BitIoLdd1.h"
 #include "LEDPin2.h"
 #include "BitIoLdd2.h"
-#include "LEDPin3.h"
-#include "BitIoLdd3.h"
 #include "WAIT1.h"
 #include "HF1.h"
 #include "CS1.h"
@@ -67,6 +65,14 @@
 #include "FRTOS1.h"
 #include "SYS1.h"
 #include "RTT1.h"
+#include "RNET1.h"
+#include "RF1.h"
+#include "CE1.h"
+#include "BitIoLdd11.h"
+#include "CSN1.h"
+#include "BitIoLdd12.h"
+#include "SM1.h"
+#include "SMasterLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {
