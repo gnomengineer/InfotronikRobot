@@ -15,6 +15,7 @@
 
 #if defined(PEcfg_RoboV2)
 	#define PL_CONFIG_IS_ROBO_V2 (1)
+#else PL_CONFIG_IS_ROBO_V2 (0)
 #endif
 
 #define PL_CONFIG_IS_ROBO PL_LOCAL_IS_ROBO
