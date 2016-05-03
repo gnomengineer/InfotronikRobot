@@ -53,7 +53,7 @@
 #define PL_CONFIG_HAS_TURN              (1 && PL_CONFIG_HAS_MOTOR)
 #define PL_CONFIG_HAS_LINE_FOLLOW       (1 && PL_CONFIG_HAS_REFLECTANCE)
 #define PL_CONFIG_HAS_RADIO             (1)
-#define RNET_CONFIG_REMOTE_STDIO        (0) /* temporary only, to be remove when RNET gets added */
+#define RNET_CONFIG_REMOTE_STDIO        (1) /* temporary only, to be remove when RNET gets added */
 #define PL_CONFIG_HAS_REMOTE            (0)
 #define PL_CONFIG_HAS_LINE_MAZE         (0)
 
