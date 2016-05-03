@@ -494,17 +494,17 @@ void PID_Init(void) {
 	speedRightConfig.integral = 0;
 #else
 
-	speedLeftConfig.pFactor100 = 0;
-	speedLeftConfig.iFactor100 = 0;
-	speedLeftConfig.dFactor100 = 0;
-	speedLeftConfig.iAntiWindup = 0;
+	speedLeftConfig.pFactor100 = 1625;
+	speedLeftConfig.iFactor100 = 50;
+	speedLeftConfig.dFactor100 = 20;
+	speedLeftConfig.iAntiWindup = 45000;
 	speedLeftConfig.lastError = 0;
 	speedLeftConfig.integral = 0;
 
-	speedRightConfig.pFactor100 = 0;
-	speedRightConfig.iFactor100 = 0;
-	speedRightConfig.dFactor100 = 0;
-	speedRightConfig.iAntiWindup = 0;
+	speedRightConfig.pFactor100 = 1550;
+	speedRightConfig.iFactor100 = 40;
+	speedRightConfig.dFactor100 = 10;
+	speedRightConfig.iAntiWindup = 50000;
 	speedRightConfig.lastError = 0;
 	speedRightConfig.integral = 0;
 #endif
