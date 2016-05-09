@@ -75,6 +75,8 @@
 #include "SMasterLdd1.h"
 #include "AD1.h"
 #include "AdcLdd1.h"
+#include "IFsh1.h"
+#include "IntFlashLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {

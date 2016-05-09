@@ -91,6 +91,8 @@
 #include "ExtIntLdd1.h"
 #include "SM1.h"
 #include "SMasterLdd1.h"
+#include "IFsh1.h"
+#include "IntFlashLdd1.h"
 #include "Q4CRight.h"
 #include "C13.h"
 #include "BitIoLdd17.h"
