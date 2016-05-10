@@ -357,7 +357,7 @@ static void PID_PrintStatus(const CLS1_StdIOType *io) {
 }
 
 static uint8_t ParsePidParameter(PID_Config *config, const unsigned char *cmd,
-		bool *handled, const CLS1_StdIOType *io) {
+bool *handled, const CLS1_StdIOType *io) {
 	const unsigned char *p;
 	uint8_t val8u;
 	uint32_t val32u;
@@ -400,8 +400,7 @@ static uint8_t ParsePidParameter(PID_Config *config, const unsigned char *cmd,
 			res = ERR_FAILED;
 		}
 	} else if (UTIL1_strncmp((char* )cmd, (char* )"speed ",
-			sizeof("speed ") - 1)
-			== 0) {
+			sizeof("speed ") - 1) == 0) {
 		p = cmd + sizeof("speed");
 		if (UTIL1_ScanDecimal8uNumber(&p, &val8u) == ERR_OK && val8u <= 100) {
 			config->maxSpeedPercent = val8u;
@@ -427,28 +426,23 @@ uint8_t PID_ParseCommand(const unsigned char *cmd, bool *handled,
 		PID_PrintStatus(io);
 		*handled = TRUE;
 	} else if (UTIL1_strncmp((char* )cmd, (char* )"pid speed L ",
-			sizeof("pid speed L ") - 1)
-			== 0) {
+			sizeof("pid speed L ") - 1) == 0) {
 		res = ParsePidParameter(&speedLeftConfig,
 				cmd + sizeof("pid speed L ") - 1, handled, io);
 	} else if (UTIL1_strncmp((char* )cmd, (char* )"pid speed R ",
-			sizeof("pid speed R ") - 1)
-			== 0) {
+			sizeof("pid speed R ") - 1) == 0) {
 		res = ParsePidParameter(&speedRightConfig,
 				cmd + sizeof("pid speed R ") - 1, handled, io);
 	} else if (UTIL1_strncmp((char* )cmd, (char* )"pid pos L ",
-			sizeof("pid pos L ") - 1)
-			== 0) {
+			sizeof("pid pos L ") - 1) == 0) {
 		res = ParsePidParameter(&speedLeftConfig,
 				cmd + sizeof("pid pos L ") - 1, handled, io);
 	} else if (UTIL1_strncmp((char* )cmd, (char* )"pid pos R ",
-			sizeof("pid pos R ") - 1)
-			== 0) {
+			sizeof("pid pos R ") - 1) == 0) {
 		res = ParsePidParameter(&speedRightConfig,
 				cmd + sizeof("pid pos R ") - 1, handled, io);
 	} else if (UTIL1_strncmp((char* )cmd, (char* )"pid fw ",
-			sizeof("pid fw ") - 1)
-			== 0) {
+			sizeof("pid fw ") - 1) == 0) {
 		res = ParsePidParameter(&lineFwConfig, cmd + sizeof("pid fw ") - 1,
 				handled, io);
 	}
@@ -492,22 +486,6 @@ void PID_Init(void) {
 	speedRightConfig.iAntiWindup = 50000;
 	speedRightConfig.lastError = 0;
 	speedRightConfig.integral = 0;
-#else
-
-	speedLeftConfig.pFactor100 = 1625;
-	speedLeftConfig.iFactor100 = 50;
-	speedLeftConfig.dFactor100 = 20;
-	speedLeftConfig.iAntiWindup = 45000;
-	speedLeftConfig.lastError = 0;
-	speedLeftConfig.integral = 0;
-
-	speedRightConfig.pFactor100 = 1550;
-	speedRightConfig.iFactor100 = 40;
-	speedRightConfig.dFactor100 = 10;
-	speedRightConfig.iAntiWindup = 50000;
-	speedRightConfig.lastError = 0;
-	speedRightConfig.integral = 0;
-#endif
 
 	lineFwConfig.pFactor100 = 4000;
 	lineFwConfig.iFactor100 = 10;
@@ -531,5 +509,44 @@ void PID_Init(void) {
 	posRightConfig.lastError = posLeftConfig.lastError;
 	posRightConfig.integral = posLeftConfig.integral;
 	posRightConfig.maxSpeedPercent = posLeftConfig.maxSpeedPercent;
+#else
+
+	speedLeftConfig.pFactor100 = 1625;
+	speedLeftConfig.iFactor100 = 50;
+	speedLeftConfig.dFactor100 = 20;
+	speedLeftConfig.iAntiWindup = 45000;
+	speedLeftConfig.lastError = 0;
+	speedLeftConfig.integral = 0;
+
+	speedRightConfig.pFactor100 = 1550;
+	speedRightConfig.iFactor100 = 40;
+	speedRightConfig.dFactor100 = 10;
+	speedRightConfig.iAntiWindup = 50000;
+	speedRightConfig.lastError = 0;
+	speedRightConfig.integral = 0;
+
+	lineFwConfig.pFactor100 = 4000;
+	lineFwConfig.iFactor100 = 10;
+	lineFwConfig.dFactor100 = 100;
+	lineFwConfig.iAntiWindup = 100000;
+	lineFwConfig.maxSpeedPercent = 45;
+	lineFwConfig.lastError = 0;
+	lineFwConfig.integral = 0;
+
+	posLeftConfig.pFactor100 = 1000;
+	posLeftConfig.iFactor100 = 2;
+	posLeftConfig.dFactor100 = 50;
+	posLeftConfig.iAntiWindup = 200;
+	posLeftConfig.maxSpeedPercent = 40;
+	posLeftConfig.lastError = 0;
+	posLeftConfig.integral = 0;
+	posRightConfig.pFactor100 = posLeftConfig.pFactor100;
+	posRightConfig.iFactor100 = posLeftConfig.iFactor100;
+	posRightConfig.dFactor100 = posLeftConfig.dFactor100;
+	posRightConfig.iAntiWindup = posLeftConfig.iAntiWindup;
+	posRightConfig.lastError = posLeftConfig.lastError;
+	posRightConfig.integral = posLeftConfig.integral;
+	posRightConfig.maxSpeedPercent = posLeftConfig.maxSpeedPercent;
+#endif
 }
 #endif /* PL_CONFIG_HAS_PID */
