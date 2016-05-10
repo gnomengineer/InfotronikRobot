@@ -26,6 +26,7 @@
 #if PL_CONFIG_HAS_BUZZER
   #include "Buzzer.h"
 #endif
+#include "NVM_Config.h"
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
 #define REF_SENSOR1_IS_LEFT   1 /* sensor number one is on the left side */
@@ -495,8 +496,22 @@ static void REF_StateMachine(void) {
 
   switch (refState) {
     case REF_STATE_INIT:
+#if PL_CONFIG_HAS_CONFIG_NVM
+    {
+    	SensorCalibT *ptr;
+    	ptr = (SensorCalibT*)NVMC_GetReflectanceData();
+    	if(ptr != NULL){
+    		SensorCalibMinMax = *ptr;
+    		refState = REF_STATE_READY;
+    	}
+    	else{
+    		refState = REF_STATE_NOT_CALIBRATED;
+    	}
+    }
+#else
       SHELL_SendString((unsigned char*)"INFO: No calibration data present.\r\n");
       refState = REF_STATE_NOT_CALIBRATED;
+#endif
       break;
       
     case REF_STATE_NOT_CALIBRATED:
@@ -533,6 +548,12 @@ static void REF_StateMachine(void) {
     
     case REF_STATE_STOP_CALIBRATION:
       SHELL_SendString((unsigned char*)"...stopping calibration.\r\n");
+      if(NVMC_SaveReflectanceData(&SensorCalibMinMax, sizeof(SensorCalibMinMax))!=ERR_OK){
+    	  SHELL_SendString("Calibration saving in flash failed!");
+      }
+      else{
+    	SHELL_SendString("Calibration saving OK!");
+      }
       refState = REF_STATE_READY;
       break;
         
