@@ -110,11 +110,36 @@ static void MAZE_RevertPath(void) {
 }
 
 TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
-  if (prev==REF_LINE_NONE && curr==REF_LINE_NONE) { /* dead end */
-    return TURN_RIGHT180; /* make U turn */
-  }
-  /*! \todo Implement all cases for turning */
-  return TURN_STOP; /* error case */
+	if ((prev==REF_LINE_NONE && curr==REF_LINE_NONE)
+			|| (prev==REF_LINE_FULL && curr==REF_LINE_FULL)){ /* dead end */
+	return TURN_RIGHT180; /* make U turn */
+	}
+	if(isLeftHand)
+	{
+		if ((prev==REF_LINE_FULL || prev==REF_LINE_LEFT) && curr!=REF_LINE_FULL)
+		{
+			return TURN_LEFT90;
+		}
+		if (curr==REF_LINE_STRAIGHT)
+		{
+			return TURN_STRAIGHT;
+		}
+		return TURN_RIGHT90;
+	}
+	else if(isRightHand)
+	{
+		if ((prev== REF_LINE_FULL || prev==REF_LINE_RIGHT) && cur!=REF_LINE_FULL)
+		{
+			return TURN_RIGHT90;
+		}
+		if (curr==REF_LINE_STRAIGHT)
+		{
+			return TURN_STRAIGHT;
+		}
+		return TURN_LEFT90;
+	}
+	/*! \todo Implement all cases for turning */
+	return TURN_STOP; /* error case */
 }
 
 void MAZE_SetSolved(void) {
@@ -151,38 +176,45 @@ void MAZE_SimplifyPath(void) {
  * \return Returns TRUE while turn is still in progress.
  */
 uint8_t MAZE_EvaluteTurn(bool *finished) {
-  REF_LineKind historyLineKind, currLineKind;
-  TURN_Kind turn;
+	REF_LineKind historyLineKind, currLineKind;
+	TURN_Kind turn;
 
-  *finished = FALSE;
-  currLineKind = REF_GetLineKind();
-  if (currLineKind==REF_LINE_NONE) { /* nothing, must be dead end */
-    turn = TURN_LEFT180;
-  } else {
-    MAZE_ClearSensorHistory(); /* clear history values */
-    MAZE_SampleSensorHistory(); /* store current values */
-    TURN_Turn(TURN_STEP_LINE_FW_POST_LINE, MAZE_SampleTurnStopFunction); /* do the line and beyond in one step */
-    historyLineKind = MAZE_HistoryLineKind(); /* new read new values */
-    currLineKind = REF_GetLineKind();
-    turn = MAZE_SelectTurn(historyLineKind, currLineKind);
-  }
-  if (turn==TURN_FINISHED) {
-    *finished = TRUE;
-    LF_StopFollowing();
-    SHELL_SendString((unsigned char*)"MAZE: finished!\r\n");
-    return ERR_OK;
-  } else if (turn==TURN_STRAIGHT) {
-    /*! \todo Extend if necessary */
-    SHELL_SendString((unsigned char*)"going straight\r\n");
-    return ERR_OK;
-  } else if (turn==TURN_STOP) { /* should not happen here? */
-    LF_StopFollowing();
-    SHELL_SendString((unsigned char*)"Failure, stopped!!!\r\n");
-    return ERR_FAILED; /* error case */
-  } else { /* turn or do something */
-    /*! \todo Extend if necessary */
-   return ERR_OK; /* turn finished */
-  }
+	*finished = FALSE;
+	currLineKind = REF_GetLineKind();
+	if (currLineKind==REF_LINE_NONE) { /* nothing, must be dead end */
+		turn = TURN_LEFT180;
+	} else {
+		MAZE_ClearSensorHistory(); /* clear history values */
+		MAZE_SampleSensorHistory(); /* store current values */
+		TURN_Turn(TURN_STEP_LINE_FW_POST_LINE, MAZE_SampleTurnStopFunction); /* do the line and beyond in one step */
+		historyLineKind = MAZE_HistoryLineKind(); /* new read new values */
+		currLineKind = REF_GetLineKind();
+		turn = MAZE_SelectTurn(historyLineKind, currLineKind);
+	}
+	if (turn==TURN_FINISHED) {
+		*finished = TRUE;
+		LF_StopFollowing();
+		SHELL_SendString((unsigned char*)"MAZE: finished!\r\n");
+		return ERR_OK;
+	} else if (turn==TURN_STRAIGHT) {
+		/*! \todo Extend if necessary */
+		SHELL_SendString((unsigned char*)"going straight\r\n");
+		return ERR_OK;
+	} else if (turn==TURN_STOP) { /* should not happen here? */
+		LF_StopFollowing();
+		SHELL_SendString((unsigned char*)"Failure, stopped!!!\r\n");
+		return ERR_FAILED; /* error case */
+	}
+	else if (turn==TURN_LEFT90)
+	{
+
+	}
+	else if (turn==TURN_RIGHT90)
+	{
+
+	/*! \todo (optional) Extend if necessary */
+	return ERR_OK; /* turn finished */
+	}
 }
 
 static void MAZE_PrintHelp(const CLS1_StdIOType *io) {

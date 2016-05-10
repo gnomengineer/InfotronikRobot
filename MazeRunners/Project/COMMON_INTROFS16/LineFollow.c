@@ -106,6 +106,15 @@ static void StateMachine(void) {
     case STATE_TURN:
       #if PL_CONFIG_HAS_LINE_MAZE
       /*! \todo Handle maze turning? */
+    	MAZE_EvaluteTurn(&finished);
+    	if(finished)
+    	{
+    		LF_currState = STATE_FINISHED;
+    	}
+    	else
+    	{
+    		LF_currState = STATE_FOLLOW_SEGMENT;
+    	}
       #endif /* PL_CONFIG_HAS_LINE_MAZE */
       break;
 
