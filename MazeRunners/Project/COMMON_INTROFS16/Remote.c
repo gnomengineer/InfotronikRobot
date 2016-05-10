@@ -213,9 +213,9 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   int tmp;
 
   if (val>0) {
-    tmp = ((val*10)/127)*100;
+    tmp = ((val*10)/127)*800;
   } else {
-    tmp = ((val*10)/128)*100;
+    tmp = ((val*10)/128)*800;
   }
   if (tmp<-1000) {
     tmp = -1000;
@@ -280,20 +280,19 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
       *handled = TRUE;
       val = *data; /* get data value */
 #if PL_CONFIG_HAS_SHELL && PL_CONFIG_HAS_BUZZER && PL_CONFIG_HAS_REMOTE
-      if (val=='F') { /* F button, disable remote */
+      if (val=='F') { /* F button, toggle remote*/
         SHELL_ParseCmd((unsigned char*)"buzzer buz 300 500");
-        REMOTE_SetOnOff(FALSE);
-        DRV_SetSpeed(0,0); /* turn off motors */
-        SHELL_SendString("Remote OFF\r\n");
-      } else if (val=='G') { /* center joystick button: enable remote */
-        SHELL_ParseCmd((unsigned char*)"buzzer buz 300 1000");
-        REMOTE_SetOnOff(TRUE);
         DRV_SetMode(DRV_MODE_SPEED);
-        SHELL_SendString("Remote ON\r\n");
-      } else if (val=='C') { /* red 'C' button */
+      } else if (val=='G') { /* center joystick button: horn*/
+		SHELL_ParseCmd((unsigned char*)"buzzer buz 2000 300");
+      } else if (val=='C') { /* 'C' button: motor stop*/
+        DRV_SetMode(DRV_MODE_STOP);
+      } else if (val=='B') { /* 'B' button: start right-hand algorithm */
         /*! \todo add functionality */
-      } else if (val=='A') { /* green 'A' button */
+      } else if (val=='D') { /* 'D' button: start left-hand algorithm */
         /*! \todo add functionality */
+      } else if (val=='E') {
+      	LF_StartStopFollowing();
       }
 #else
       *handled = FALSE; /* no shell and no buzzer? */
@@ -398,7 +397,11 @@ void REMOTE_Deinit(void) {
 
 /*! \brief Initializes module */
 void REMOTE_Init(void) {
+#if PL_CONFIG_IS_FRDM
+  REMOTE_isOn = FALSE;
+#else
   REMOTE_isOn = TRUE;
+#endif
   REMOTE_isVerbose = FALSE;
   REMOTE_useJoystick = TRUE;
 #if PL_CONFIG_CONTROL_SENDER

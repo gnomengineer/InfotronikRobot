@@ -10,6 +10,11 @@
 #include "FRTOS1.h"
 #include "Shell.h"
 #include "RStdIO.h"
+#if PL_CONFIG_HAS_REMOTE
+	#include "RApp.h"
+	#include "Remote.h"
+#endif
+
 #if PL_CONFIG_IS_ROBO_V2
 	#include "PORT_PDD.h"
 #endif
@@ -17,6 +22,7 @@ static int tune_counter = 0;
 
  void APP_HandleEvent(EVNT_Handle event)
   {
+	int buf;
   	switch(event)
   	{
   	case EVNT_STARTUP:
@@ -37,35 +43,34 @@ static int tune_counter = 0;
 		//CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
 		SHELL_SendString("SW1 Pressed\n\r");
 #endif
-#if PL_CONFIG_IS_FRDM
-		//@TODO start maze
-#endif
   		break;
 
 #if PL_CONFIG_IS_FRDM
   	case EVENT_SW2_PRESSED:
   	  	LED1_Neg();
-		//@TODO set 'right-hand' algorithm
-  	  	SHELL_SendString("SW2 Pressed\n\r");
+  		buf = 'B';
+  		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
   	  	break;
   	case EVENT_SW3_PRESSED:
-		//@TODO turn off motors
-  		SHELL_SendString("SW3 Pressed\n\r");
+  		buf = 'C';
+  		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
   		break;
   	case EVENT_SW4_PRESSED:
-		//@TODO set 'left-hand' algorithm
-  		SHELL_SendString("SW4 Pressed\n\r");
+  		buf = 'D';
+  		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
   		break;
   	case EVENT_SW5_PRESSED:
-		//@TODO start line follow
-  		SHELL_SendString("SW5 Pressed\n\r");
+  		buf = 'E';
+  		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
   		break;
   	case EVENT_SW6_PRESSED:
-  		//@TODO toggle remote
-  		SHELL_SendString("SW6 Pressed\n\r");
+  		buf = 'F';
+  		REMOTE_SetOnOff(!REMOTE_GetOnOff());
+  		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
   		break;
   	case EVENT_SW7_PRESSED:
-  		SHELL_SendString("SW7 Pressed\n\r");
+  		buf = 'G';
+  		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
 #endif
   		break;
   	case EVENT_SW1_LPRESSED:
