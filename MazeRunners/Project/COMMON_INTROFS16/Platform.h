@@ -15,7 +15,8 @@
 
 #if defined(PEcfg_RoboV2)
 	#define PL_CONFIG_IS_ROBO_V2 (1)
-#else PL_CONFIG_IS_ROBO_V2 (0)
+#else
+	#define PL_CONFIG_IS_ROBO_V2 (0)
 #endif
 
 #define PL_CONFIG_IS_ROBO PL_LOCAL_IS_ROBO
@@ -54,9 +55,10 @@
 #define PL_CONFIG_HAS_LINE_FOLLOW       (1 && PL_CONFIG_HAS_REFLECTANCE)
 #define PL_CONFIG_HAS_RADIO             (1)
 #define RNET_CONFIG_REMOTE_STDIO        (1) /* temporary only, to be remove when RNET gets added */
-#define PL_CONFIG_HAS_REMOTE            (0)
-#define PL_CONFIG_HAS_LINE_MAZE         (0)
 #define PL_CONFIG_HAS_CONFIG_NVM		(1)
+#define PL_CONFIG_HAS_REMOTE            (1)
+#define PL_CONFIG_CONTROL_SENDER		(1 && PL_CONFIG_IS_FRDM)
+#define PL_CONFIG_HAS_LINE_MAZE         (1 && PL_CONFIG_HAS_MOTOR)
 
 void PL_Init(void);
 void PL_Deinit(void);

@@ -9,6 +9,7 @@
 #include "Tunes.h"
 #include "FRTOS1.h"
 #include "Shell.h"
+#include "RStdIO.h"
 #if PL_CONFIG_IS_ROBO_V2
 	#include "PORT_PDD.h"
 #endif
@@ -37,38 +38,34 @@ static int tune_counter = 0;
 		SHELL_SendString("SW1 Pressed\n\r");
 #endif
 #if PL_CONFIG_IS_FRDM
-		//@TODO send "motor duty 20" to robot
+		//@TODO start maze
 #endif
   		break;
-  	case EVENT_SW2_PRESSED:
-  	  	LED1_Off();
+
 #if PL_CONFIG_IS_FRDM
-		//@TODO send "motor R turn <val>" to robot
+  	case EVENT_SW2_PRESSED:
+  	  	LED1_Neg();
+		//@TODO set 'right-hand' algorithm
   	  	SHELL_SendString("SW2 Pressed\n\r");
-#endif
   	  	break;
   	case EVENT_SW3_PRESSED:
-#if PL_CONFIG_IS_FRDM
-		//@TODO send "motor duty -20" to robot
+		//@TODO turn off motors
   		SHELL_SendString("SW3 Pressed\n\r");
-#endif
   		break;
   	case EVENT_SW4_PRESSED:
-#if PL_CONFIG_IS_FRDM
-		//@TODO send "motor L turn <val>" to robot
+		//@TODO set 'left-hand' algorithm
   		SHELL_SendString("SW4 Pressed\n\r");
-#endif
   		break;
   	case EVENT_SW5_PRESSED:
-#if PL_CONFIG_IS_FRDM
-		//@TODO send "motor stop" to robot
+		//@TODO start line follow
   		SHELL_SendString("SW5 Pressed\n\r");
-#endif
   		break;
   	case EVENT_SW6_PRESSED:
-#if PL_CONFIG_IS_FRDM
-		//@TODO send "maze start" to robot
+  		//@TODO toggle remote
   		SHELL_SendString("SW6 Pressed\n\r");
+  		break;
+  	case EVENT_SW7_PRESSED:
+  		SHELL_SendString("SW7 Pressed\n\r");
 #endif
   		break;
   	case EVENT_SW1_LPRESSED:

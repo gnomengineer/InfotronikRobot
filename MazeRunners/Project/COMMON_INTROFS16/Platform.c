@@ -43,6 +43,9 @@
 #if PL_CONFIG_HAS_RADIO
 	#include "RNet_App.h"
 #endif
+#if PL_CONFIG_HAS_REMOTE
+	#include "Remote.h"
+#endif
 
 /* Platform initialization */
 void PL_Init(void){
@@ -86,8 +89,10 @@ void PL_Init(void){
 	LF_Init();
 #endif
 #if PL_CONFIG_HAS_RADIO
-	//RNET1_Init();
 	RNETA_Init();
+#endif
+#if PL_CONFIG_HAS_REMOTE
+	REMOTE_Init();
 #endif
 }
 
