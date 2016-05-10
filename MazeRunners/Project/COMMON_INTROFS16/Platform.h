@@ -56,6 +56,7 @@
 #define RNET_CONFIG_REMOTE_STDIO        (1) /* temporary only, to be remove when RNET gets added */
 #define PL_CONFIG_HAS_REMOTE            (0)
 #define PL_CONFIG_HAS_LINE_MAZE         (0)
+#define PL_CONFIG_HAS_CONFIG_NVM		(1)
 
 void PL_Init(void);
 void PL_Deinit(void);

@@ -24,6 +24,7 @@
   #include "Drive.h"
 #endif
 
+#if PL_CONFIG_IS_ROBO_V2
 #define TURN_STEPS_90         500
   /*!< number of steps for a 90 degree turn */
 #define TURN_STEPS_LINE       150
@@ -34,6 +35,19 @@
 #define TURN_STEPS_LINE_TIMEOUT_MS      200
 #define TURN_STEPS_POST_LINE_TIMEOUT_MS 200
 #define TURN_STEPS_STOP_TIMEOUT_MS      150
+
+#else
+#define TURN_STEPS_90         690
+  /*!< number of steps for a 90 degree turn */
+#define TURN_STEPS_LINE       150
+  /*!< number of steps stepping over the line */
+#define TURN_STEPS_POST_LINE  80
+  /*!< number of steps after the line, before making a turn */
+#define TURN_STEPS_90_TIMEOUT_MS        1000
+#define TURN_STEPS_LINE_TIMEOUT_MS      200
+#define TURN_STEPS_POST_LINE_TIMEOUT_MS 200
+#define TURN_STEPS_STOP_TIMEOUT_MS      150
+#endif
 
 static int32_t TURN_Steps90 = TURN_STEPS_90;
 static int32_t TURN_StepsLine = TURN_STEPS_LINE;
@@ -180,7 +194,7 @@ void TURN_TurnAngle(int16_t angle, TURN_StopFct stopIt) {
   if (isLeft) {
     angle = -angle; /* make it positive */
   }
-  angle %= 360; /* keep it inside 360° */
+  angle %= 360; /* keep it inside 360ï¿½ */
   steps = (angle*TURN_Steps90)/90;
   if (isLeft) {
     StepsTurn(-steps, steps, stopIt, ((angle/90)+1)*TURN_STEPS_90_TIMEOUT_MS);
@@ -208,7 +222,7 @@ static void TURN_PrintStatus(const CLS1_StdIOType *io) {
   CLS1_SendStatusStr((unsigned char*)"turn", (unsigned char*)"\r\n", io->stdOut);
   UTIL1_Num32sToStr(buf, sizeof(buf), TURN_Steps90);
   UTIL1_strcat(buf, sizeof(buf), (unsigned char*)" steps\r\n");
-  CLS1_SendStatusStr((unsigned char*)"  90°", buf, io->stdOut);
+  CLS1_SendStatusStr((unsigned char*)"  90ï¿½", buf, io->stdOut);
 
   UTIL1_Num32sToStr(buf, sizeof(buf), TURN_StepsLine);
   UTIL1_strcat(buf, sizeof(buf), (unsigned char*)" steps\r\n");
