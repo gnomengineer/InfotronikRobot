@@ -44,6 +44,7 @@ typedef enum {
 #define LF_STOP_FOLLOWING  (1<<1)  /* stop line following */
 
 static volatile StateType LF_currState = STATE_IDLE;
+static bool finished;
 static xTaskHandle LFTaskHandle;
 #if PL_CONFIG_HAS_LINE_MAZE
 static uint8_t LF_solvedIdx = 0; /*  index to iterate through the solution, zero is the solution start index */

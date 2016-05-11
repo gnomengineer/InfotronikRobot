@@ -17,6 +17,17 @@
 
 #define MAZE_MIN_LINE_VAL      0x60   /* minimum value indicating a line */
 static uint16_t SensorHistory[REF_NOF_SENSORS]; /* value of history while moving forward */
+static ALGORITHM_Kind solver = LEFT_HAND;
+
+void MAZE_SetSolveAlgorithm(ALGORITHM_Kind algorithm)
+{
+	solver = algorithm;
+}
+
+ALGORITHM_Kind MAZE_GetSolveAlgorithm()
+{
+	return solver;
+}
 
 static void MAZE_SampleSensorHistory(void) {
   uint8_t i;
@@ -114,7 +125,7 @@ TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
 			|| (prev==REF_LINE_FULL && curr==REF_LINE_FULL)){ /* dead end */
 	return TURN_RIGHT180; /* make U turn */
 	}
-	if(isLeftHand)
+	if(solver == LEFT_HAND)
 	{
 		if ((prev==REF_LINE_FULL || prev==REF_LINE_LEFT) && curr!=REF_LINE_FULL)
 		{
@@ -126,9 +137,9 @@ TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
 		}
 		return TURN_RIGHT90;
 	}
-	else if(isRightHand)
+	else if(solver == RIGHT_HAND)
 	{
-		if ((prev== REF_LINE_FULL || prev==REF_LINE_RIGHT) && cur!=REF_LINE_FULL)
+		if ((prev== REF_LINE_FULL || prev==REF_LINE_RIGHT) && curr!=REF_LINE_FULL)
 		{
 			return TURN_RIGHT90;
 		}
@@ -205,13 +216,9 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 		SHELL_SendString((unsigned char*)"Failure, stopped!!!\r\n");
 		return ERR_FAILED; /* error case */
 	}
-	else if (turn==TURN_LEFT90)
+	else
 	{
-
-	}
-	else if (turn==TURN_RIGHT90)
-	{
-
+		TURN_Turn(turn,MAZE_SampleTurnStopFunction);
 	/*! \todo (optional) Extend if necessary */
 	return ERR_OK; /* turn finished */
 	}

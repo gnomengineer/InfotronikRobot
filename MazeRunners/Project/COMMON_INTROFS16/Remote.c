@@ -36,6 +36,9 @@
 #if PL_CONFIG_HAS_SHELL
   #include "Shell.h"
 #endif
+#if PL_CONFIG_HAS_LINE_MAZE
+	#include "Maze.h"
+#endif
 
 static bool REMOTE_isOn = FALSE;
 static bool REMOTE_isVerbose = FALSE;
@@ -285,12 +288,18 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         DRV_SetMode(DRV_MODE_SPEED);
       } else if (val=='G') { /* center joystick button: horn*/
 		SHELL_ParseCmd((unsigned char*)"buzzer buz 2000 300");
+      } else if (val=='A')
+      {
+      	MAZE_SetSolveAlgorithm(RIGHT_HAND);
+        LF_StartFollowing();
       } else if (val=='C') { /* 'C' button: motor stop*/
         DRV_SetMode(DRV_MODE_STOP);
       } else if (val=='B') { /* 'B' button: start right-hand algorithm */
-        /*! \todo add functionality */
+    	MAZE_SetSolveAlgorithm(RIGHT_HAND);
+        LF_StartFollowing();
       } else if (val=='D') { /* 'D' button: start left-hand algorithm */
-        /*! \todo add functionality */
+      	MAZE_SetSolveAlgorithm(LEFT_HAND);
+        LF_StartFollowing();
       } else if (val=='E') {
       	LF_StartStopFollowing();
       }

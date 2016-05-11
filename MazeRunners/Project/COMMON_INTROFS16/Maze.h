@@ -13,6 +13,14 @@
 #include "Turn.h"
 #include "Reflectance.h"
 
+typedef enum
+{
+	LEFT_HAND,
+	RIGHT_HAND,
+	STRAIGHT_HAND,
+	NOF_ALG,
+}ALGORITHM_Kind;
+
 /*!
  * \brief Adds a new path while going forward through the maze
  * \param kind New path to be added
