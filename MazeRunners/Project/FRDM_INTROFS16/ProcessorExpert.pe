@@ -1442,12 +1442,12 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>FTFL_FlashConfigNmiFunction</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
+        <ReadOnly>true</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
         <TypeSpecNameState>typeKinetisFTFL_FlashConfigNmiFunction</TypeSpecNameState>
-        <Index>0</Index>
-        <EnumSymbVal>enabled</EnumSymbVal>
+        <Index>1</Index>
+        <EnumSymbVal>disabled</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>FTFL_FlashConfigFlashInitSpeed</ItemSymbol>
