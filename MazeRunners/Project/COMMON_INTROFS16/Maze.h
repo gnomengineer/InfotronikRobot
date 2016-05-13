@@ -22,10 +22,27 @@ typedef enum
 }ALGORITHM_Kind;
 
 /*!
+ * \brief sets the solving algorithm
+ * \param the algorithmn used
+ */
+void MAZE_SetSolveAlgorithm(ALGORITHM_Kind algorithm);
+
+/*!
+ * \brief returns the kind of algorithm used to solve the maze
+ */
+ALGORITHM_Kind MAZE_GetSolveAlgorithm();
+
+/*!
  * \brief Adds a new path while going forward through the maze
  * \param kind New path to be added
  */
 void MAZE_AddPath(TURN_Kind kind);
+
+/*!
+ * \brief removes the index from the path. correctly sets path at given index null and shifts right sided values by 1
+ * \param index to be removed
+ */
+uint8_t MAZE_RemovePathOnIndex(uint8_t index);
 
 /*!
  * \brief Tries to simplify the path, basically cutting dead end paths.
