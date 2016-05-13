@@ -75,6 +75,7 @@ static uint8_t APP_GetXY(uint16_t *x, uint16_t *y, int8_t *x8, int8_t *y8) {
   uint16_t values[2];
 
   res = AD1_Measure(TRUE);
+
   if (res!=ERR_OK) {
     return res;
   }
@@ -216,9 +217,9 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   int tmp;
 
   if (val>0) {
-    tmp = ((val*10)/127)*800;
+    tmp = ((val*10)/127)*100;
   } else {
-    tmp = ((val*10)/128)*800;
+    tmp = ((val*10)/128)*100;
   }
   if (tmp<-1000) {
     tmp = -1000;
