@@ -96,7 +96,7 @@ static void StateMachine(void) {
       if (!FollowSegment()) {
     #if PL_CONFIG_HAS_LINE_MAZE
         LF_currState = STATE_TURN; /* make turn */
-        SHELL_SendString((unsigned char*)"no line, turn..\r\n");
+        //SHELL_SendString((unsigned char*)"no line, turn..\r\n");
     #else
         LF_currState = STATE_STOP; /* stop if we do not have a line any more */
         SHELL_SendString((unsigned char*)"No line, stopped!\r\n");

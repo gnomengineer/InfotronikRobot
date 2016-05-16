@@ -98,6 +98,18 @@ static TURN_Kind RevertTurn(TURN_Kind turn) {
   } else if (turn==TURN_RIGHT90) {
     turn = TURN_LEFT90;
   }
+	if(TURN_RIGHT90==turn)
+	{
+		SHELL_SendString((unsigned char*)"R");
+	}
+	else if(TURN_LEFT90==turn)
+	{
+		SHELL_SendString((unsigned char*)"L");
+	}
+	else if(TURN_STRAIGHT==turn)
+	{
+		SHELL_SendString((unsigned char*)"S");
+	}
   return turn;
 }
 
@@ -123,30 +135,29 @@ static void MAZE_RevertPath(void) {
 
 TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
 	TURN_Kind selectedTurn = TURN_STOP;
-
-	if (prev==REF_LINE_NONE && curr==REF_LINE_NONE){ /* dead end */
-	selectedTurn = TURN_RIGHT180; /* make U turn */
-	}
+//
+//	if (prev==REF_LINE_NONE || curr==REF_LINE_NONE){ /* dead end */
+//		selectedTurn = TURN_RIGHT180; /* make U turn */
+//	}
 	if(prev==REF_LINE_FULL && curr==REF_LINE_FULL)
 	{
-		SHELL_SendString((unsigned char*)"turn: finish");
 		return TURN_FINISHED;
 	}
 	if(solver == LEFT_HAND)
 	{
 		if ((prev==REF_LINE_FULL || prev==REF_LINE_LEFT) && curr!=REF_LINE_FULL)
 		{
-			SHELL_SendString((unsigned char*)"turn: left");
+			SHELL_SendString((unsigned char*)"turn: L-left\r\n");
 			selectedTurn = TURN_LEFT90;
 		}
 		else if (curr==REF_LINE_STRAIGHT)
 		{
-			SHELL_SendString((unsigned char*)"turn: straight");
+			SHELL_SendString((unsigned char*)"turn: L-straight\r\n");
 			selectedTurn = TURN_STRAIGHT;
 		}
 		else
 		{
-			SHELL_SendString((unsigned char*)"turn: right");
+			SHELL_SendString((unsigned char*)"turn: L-right\r\n");
 			selectedTurn = TURN_RIGHT90;
 		}
 	}
@@ -154,14 +165,17 @@ TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
 	{
 		if ((prev== REF_LINE_FULL || prev==REF_LINE_RIGHT) && curr!=REF_LINE_FULL)
 		{
+			SHELL_SendString((unsigned char*)"turn: R-right\r\n");
 			selectedTurn = TURN_RIGHT90;
 		}
-		if (curr==REF_LINE_STRAIGHT)
+		else if (curr==REF_LINE_STRAIGHT)
 		{
+			SHELL_SendString((unsigned char*)"turn: R-straight\r\n");
 			selectedTurn = TURN_STRAIGHT;
 		}
 		else
 		{
+			SHELL_SendString((unsigned char*)"turn: R-left\r\n");
 			selectedTurn = TURN_LEFT90;
 		}
 	}
@@ -214,11 +228,12 @@ uint8_t MAZE_RemovePathOnIndex(uint8_t index)
  */
 void MAZE_SimplifyPath(void) {
 	int i = 0;
+	unsigned char dst;
 
 	while(i < (pathLength-2))
 	{
 		//check if index' neighbour is a U-turn
-		if(path[i+1] == TURN_RIGHT180)
+		if(path[i+1] == TURN_RIGHT180 || path[i+1] == TURN_LEFT180)
 		{
 			// R U S => L
 			if(path[i] == TURN_RIGHT90 && path[i+2] == TURN_STRAIGHT)
@@ -284,15 +299,16 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 	REF_LineKind historyLineKind, currLineKind;
 	TURN_Kind turn;
 
-
 	*finished = FALSE;
 	currLineKind = REF_GetLineKind();
-	if (currLineKind==REF_LINE_NONE) { /* nothing, must be dead end */
-		turn = TURN_LEFT180;
-	}
-	else if(isSolved)
+	if (isSolved)
 	{
-		turn = MAZE_GetSolvedTurn(solvedIndx);
+		turn = MAZE_GetSolvedTurn(&solvedIndx);
+	}
+	else if(currLineKind==REF_LINE_NONE) { /* nothing, must be dead end */
+		SHELL_SendString((unsigned char*)"turn: U-turn\r\n");
+		turn = TURN_LEFT180;
+		MAZE_AddPath(turn);
 	}
 	else
 	{
@@ -305,7 +321,8 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 	}
 	if (turn==TURN_FINISHED) {
 		*finished = TRUE;
-		LF_StopFollowing();
+		//LF_StopFollowing();
+		TURN_Turn(TURN_RIGHT180,MAZE_SampleTurnStopFunction);
 		SHELL_SendString((unsigned char*)"MAZE: finished!\r\n");
 		return ERR_OK;
 	} else if (turn==TURN_STRAIGHT) {
@@ -320,8 +337,8 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 	else
 	{
 		TURN_Turn(turn,MAZE_SampleTurnStopFunction);
-	/*! \todo (optional) Extend if necessary */
-	return ERR_OK; /* turn finished */
+		/*! \todo (optional) Extend if necessary */
+		return ERR_OK; /* turn finished */
 	}
 }
 
