@@ -122,7 +122,9 @@ static void StateMachine(void) {
     case STATE_FINISHED:
       #if PL_CONFIG_HAS_LINE_MAZE
       /*! \todo Handle maze finished? */
-
+    	MAZE_SetSolved();
+    	LF_StartFollowing();
+    	LF_currState = STATE_TURN;
       #endif /* PL_CONFIG_HAS_LINE_MAZE */
       break;
     case STATE_STOP:

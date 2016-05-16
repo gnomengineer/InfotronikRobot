@@ -23,6 +23,7 @@
 #include "Application.h"
 #include "Event.h"
 #include "Shell.h"
+#include "CS1.h"
 #if PL_CONFIG_HAS_BUZZER
   #include "Buzzer.h"
 #endif
