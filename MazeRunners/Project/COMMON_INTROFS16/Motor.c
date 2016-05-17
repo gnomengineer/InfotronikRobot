@@ -35,7 +35,17 @@ static uint8_t PWMRSetRatio16(uint16_t ratio) {
 
 static void DirLPutVal(bool val) {
   /*! \todo Check if directions are working properly with your hardware */
+#if PL_CONFIG_IS_ROBO_V2
   DIRL_PutVal(val);
+#else
+  if(val==0){
+	  val = 1;
+  }
+  else{
+	  val = 0;
+  }
+  DIRL_PutVal(val);
+#endif
 }
 
 static void DirRPutVal(bool val) {
