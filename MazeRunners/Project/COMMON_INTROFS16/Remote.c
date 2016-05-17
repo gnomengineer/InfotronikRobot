@@ -291,15 +291,21 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
 		SHELL_ParseCmd((unsigned char*)"buzzer buz 2000 300");
       } else if (val=='A')
       {
+
       	MAZE_SetSolveAlgorithm(RIGHT_HAND);
+
         LF_StartFollowing();
       } else if (val=='C') { /* 'C' button: motor stop*/
         DRV_SetMode(DRV_MODE_STOP);
       } else if (val=='B') { /* 'B' button: start right-hand algorithm */
+
     	MAZE_SetSolveAlgorithm(RIGHT_HAND);
+
         LF_StartFollowing();
       } else if (val=='D') { /* 'D' button: start left-hand algorithm */
+
       	MAZE_SetSolveAlgorithm(LEFT_HAND);
+
         LF_StartFollowing();
       } else if (val=='E') {
       	LF_StartStopFollowing();
