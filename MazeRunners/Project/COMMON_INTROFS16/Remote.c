@@ -147,67 +147,76 @@ static void RemoteTask (void *pvParameters) {
 
 #if PL_CONFIG_HAS_MOTOR
 static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_t z) {
-  #define SCALE_DOWN 30
-  #define MIN_VALUE  250 /* values below this value are ignored */
-  #define DRIVE_DOWN 1
 
-  if (!REMOTE_isOn) {
-    return;
-  }
-  if (z<-900) { /* have a way to stop motor: turn FRDM USB port side up or down */
-#if PL_CONFIG_HAS_DRIVE
-    DRV_SetSpeed(0, 0);
-#else
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
-#endif
-  } else if ((directionVal>MIN_VALUE || directionVal<-MIN_VALUE) && (speedVal>MIN_VALUE || speedVal<-MIN_VALUE)) {
-    int16_t speed, speedL, speedR;
-    
-    speed = speedVal/SCALE_DOWN;
-    if (directionVal<0) {
-      if (speed<0) {
-        speedR = speed+(directionVal/SCALE_DOWN);
-      } else {
-        speedR = speed-(directionVal/SCALE_DOWN);
-      }
-      speedL = speed;
-    } else {
-      speedR = speed;
-      if (speed<0) {
-        speedL = speed-(directionVal/SCALE_DOWN);
-      } else {
-        speedL = speed+(directionVal/SCALE_DOWN);
-      }
-    }
-#if PL_CONFIG_HAS_DRIVE
-    DRV_SetSpeed(speedL*SCALE_DOWN/DRIVE_DOWN, speedR*SCALE_DOWN/DRIVE_DOWN);
-#else
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), speedL);
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), speedR);
-#endif
-  } else if (speedVal>100 || speedVal<-100) { /* speed */
-#if PL_CONFIG_HAS_DRIVE
-    DRV_SetSpeed(speedVal, speedVal);
-#else
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -speedVal/SCALE_DOWN);
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), -speedVal/SCALE_DOWN);
-#endif
-  } else if (directionVal>100 || directionVal<-100) { /* direction */
-#if PL_CONFIG_HAS_DRIVE
-    DRV_SetSpeed(directionVal/DRIVE_DOWN, -directionVal/DRIVE_DOWN);
-#else
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), (directionVAl/SCALE_DOWN));
-#endif
-  } else { /* device flat on the table? */
-#if PL_CONFIG_HAS_DRIVE
-    DRV_SetSpeed(0, 0);
-#else
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
-    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
-#endif
-  }
+//  #define SCALE_DOWN 30
+//  #define MIN_VALUE  250 /* values below this value are ignored */
+//  #define DRIVE_DOWN 1
+//
+//  if (!REMOTE_isOn) {
+//    return;
+//  }
+//  if (z<-900) { /* have a way to stop motor: turn FRDM USB port side up or down */
+//#if PL_CONFIG_HAS_DRIVE
+//    DRV_SetSpeed(0, 0);
+//#else
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
+//#endif
+//  } else if ((directionVal>MIN_VALUE || directionVal<-MIN_VALUE) && (speedVal>MIN_VALUE || speedVal<-MIN_VALUE)) {
+//    int16_t speedVal, speedL, speedR;
+//
+//    speed = speedVal/SCALE_DOWN;
+	int16_t speedL, speedR;
+//    if (directionVal<0) {
+//      if (speedVal<0) {
+//        speedR = speedVal+(directionVal);
+//      } else {
+//        speedR = speedVal-(directionVal);
+//      }
+//      speedL = speedVal;
+//    } else {
+//      speedR = speedVal;
+//      if (speedVal<0) {
+//        speedL = speedVal-(directionVal);
+//      } else {
+//        speedL = speedVal+(directionVal);
+//      }
+//    }
+	if(speedVal < 0)
+	{
+		directionVal *= -1;
+	}
+    speedR = 3 * speedVal - 3 * directionVal;
+    speedL = 3 * speedVal + 3 * directionVal;
+    DRV_SetSpeed(speedL, speedR);
+//#if PL_CONFIG_HAS_DRIVE
+//    DRV_SetSpeed(speedL*SCALE_DOWN/DRIVE_DOWN, speedR*SCALE_DOWN/DRIVE_DOWN);
+//#else
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), speedL);
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), speedR);
+//#endif
+//  } else if (speedVal>100 || speedVal<-100) { /* speed */
+//#if PL_CONFIG_HAS_DRIVE
+//    DRV_SetSpeed(speedVal, speedVal);
+//#else
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -speedVal/SCALE_DOWN);
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), -speedVal/SCALE_DOWN);
+//#endif
+//  } else if (directionVal>100 || directionVal<-100) { /* direction */
+//#if PL_CONFIG_HAS_DRIVE
+//    DRV_SetSpeed(directionVal/DRIVE_DOWN, -directionVal/DRIVE_DOWN);
+//#else
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), (directionVAl/SCALE_DOWN));
+//#endif
+//  } else { /* device flat on the table? */
+//#if PL_CONFIG_HAS_DRIVE
+//    DRV_SetSpeed(0, 0);
+//#else
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
+//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
+//#endif
+//  }
 }
 #endif
 
