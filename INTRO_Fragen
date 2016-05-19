@@ -22,4 +22,5 @@ Q: Warum wird in DRV_HasTurned nach SpeedL und SpeedR geprüft?
 A: Es wird geprüft ob das Drehen beendet ist, darum speed nahe bei 0
 
 
-
+Q: Warum 'stirbt' die Shell ausgabe nachdem das Maze beendet wurde ("Maze: finished") wenn Batterien schwach sind?
+A: 
