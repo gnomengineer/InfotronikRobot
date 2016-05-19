@@ -86,7 +86,7 @@ void MAZE_ClearSensorHistory(void) {
 }
 
 
-#define MAZE_MAX_PATH        32 /* maximum number of turns in path */
+#define MAZE_MAX_PATH        64 /* maximum number of turns in path */
 
 static TURN_Kind path[MAZE_MAX_PATH]; /* recorded maze */
 static uint8_t pathLength = 0; /* number of entries in path[] */
@@ -98,18 +98,6 @@ static TURN_Kind RevertTurn(TURN_Kind turn) {
   } else if (turn==TURN_RIGHT90) {
     turn = TURN_LEFT90;
   }
-	if(TURN_RIGHT90==turn)
-	{
-		SHELL_SendString((unsigned char*)"R");
-	}
-	else if(TURN_LEFT90==turn)
-	{
-		SHELL_SendString((unsigned char*)"L");
-	}
-	else if(TURN_STRAIGHT==turn)
-	{
-		SHELL_SendString((unsigned char*)"S");
-	}
   return turn;
 }
 
@@ -129,9 +117,23 @@ static void MAZE_RevertPath(void) {
     tmp = path[i];
     path[i] = RevertTurn(path[j]);
     path[j] = RevertTurn(tmp);
+
+	if(TURN_RIGHT90==path[i])
+	{
+		SHELL_SendString((unsigned char*)"R");
+	}
+	else if(TURN_LEFT90==path[i])
+	{
+		SHELL_SendString((unsigned char*)"L");
+	}
+	else if(TURN_STRAIGHT==path[i])
+	{
+		SHELL_SendString((unsigned char*)"S");
+	}
+
     i++; j--;
   }
-//  SHELL_SendString((unsigned char*)"\r\n");
+  SHELL_SendString((unsigned char*)"\r\n");
 }
 
 TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
