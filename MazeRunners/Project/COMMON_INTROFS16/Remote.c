@@ -153,8 +153,8 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 	{
 		directionVal *= -1;
 	}
-    speedR = 3 * speedVal - 3 * directionVal;
-    speedL = 3 * speedVal + 3 * directionVal;
+    speedR = 5 * speedVal - 2 * directionVal;
+    speedL = 5 * speedVal + 2 * directionVal;
     DRV_SetSpeed(speedL, speedR);
 }
 #endif
