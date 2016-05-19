@@ -25,7 +25,7 @@
 #endif
 
 #if PL_CONFIG_IS_ROBO_V2
-#define TURN_STEPS_90         500
+#define TURN_STEPS_90         650
   /*!< number of steps for a 90 degree turn */
 #define TURN_STEPS_LINE       150
   /*!< number of steps stepping over the line */

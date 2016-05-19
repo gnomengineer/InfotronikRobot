@@ -148,40 +148,7 @@ static void RemoteTask (void *pvParameters) {
 #if PL_CONFIG_HAS_MOTOR
 static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_t z) {
 
-//  #define SCALE_DOWN 30
-//  #define MIN_VALUE  250 /* values below this value are ignored */
-//  #define DRIVE_DOWN 1
-//
-//  if (!REMOTE_isOn) {
-//    return;
-//  }
-//  if (z<-900) { /* have a way to stop motor: turn FRDM USB port side up or down */
-//#if PL_CONFIG_HAS_DRIVE
-//    DRV_SetSpeed(0, 0);
-//#else
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
-//#endif
-//  } else if ((directionVal>MIN_VALUE || directionVal<-MIN_VALUE) && (speedVal>MIN_VALUE || speedVal<-MIN_VALUE)) {
-//    int16_t speedVal, speedL, speedR;
-//
-//    speed = speedVal/SCALE_DOWN;
 	int16_t speedL, speedR;
-//    if (directionVal<0) {
-//      if (speedVal<0) {
-//        speedR = speedVal+(directionVal);
-//      } else {
-//        speedR = speedVal-(directionVal);
-//      }
-//      speedL = speedVal;
-//    } else {
-//      speedR = speedVal;
-//      if (speedVal<0) {
-//        speedL = speedVal-(directionVal);
-//      } else {
-//        speedL = speedVal+(directionVal);
-//      }
-//    }
 	if(speedVal < 0)
 	{
 		directionVal *= -1;
@@ -189,34 +156,6 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
     speedR = 3 * speedVal - 3 * directionVal;
     speedL = 3 * speedVal + 3 * directionVal;
     DRV_SetSpeed(speedL, speedR);
-//#if PL_CONFIG_HAS_DRIVE
-//    DRV_SetSpeed(speedL*SCALE_DOWN/DRIVE_DOWN, speedR*SCALE_DOWN/DRIVE_DOWN);
-//#else
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), speedL);
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), speedR);
-//#endif
-//  } else if (speedVal>100 || speedVal<-100) { /* speed */
-//#if PL_CONFIG_HAS_DRIVE
-//    DRV_SetSpeed(speedVal, speedVal);
-//#else
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -speedVal/SCALE_DOWN);
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), -speedVal/SCALE_DOWN);
-//#endif
-//  } else if (directionVal>100 || directionVal<-100) { /* direction */
-//#if PL_CONFIG_HAS_DRIVE
-//    DRV_SetSpeed(directionVal/DRIVE_DOWN, -directionVal/DRIVE_DOWN);
-//#else
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), -directionVal/SCALE_DOWN);
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), (directionVAl/SCALE_DOWN));
-//#endif
-//  } else { /* device flat on the table? */
-//#if PL_CONFIG_HAS_DRIVE
-//    DRV_SetSpeed(0, 0);
-//#else
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT), 0);
-//    MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT), 0);
-//#endif
-//  }
 }
 #endif
 
@@ -300,24 +239,21 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
 		SHELL_ParseCmd((unsigned char*)"buzzer buz 2000 300");
       } else if (val=='A')
       {
-
+    	MAZE_ClearSolution();
       	MAZE_SetSolveAlgorithm(RIGHT_HAND);
-
         LF_StartFollowing();
       } else if (val=='C') { /* 'C' button: motor stop*/
         DRV_SetMode(DRV_MODE_STOP);
       } else if (val=='B') { /* 'B' button: start right-hand algorithm */
-
+    	MAZE_ClearSolution();
     	MAZE_SetSolveAlgorithm(RIGHT_HAND);
-
         LF_StartFollowing();
       } else if (val=='D') { /* 'D' button: start left-hand algorithm */
-
+    	MAZE_ClearSolution();
       	MAZE_SetSolveAlgorithm(LEFT_HAND);
-
         LF_StartFollowing();
       } else if (val=='E') {
-      	LF_StartStopFollowing();
+      	LF_StopFollowing();
       }
 #else
       *handled = FALSE; /* no shell and no buzzer? */

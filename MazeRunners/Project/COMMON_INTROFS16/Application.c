@@ -10,6 +10,9 @@
 #include "FRTOS1.h"
 #include "Shell.h"
 #include "RStdIO.h"
+#if PL_CONFIG_HAS_LINE_MAZE
+	#include "Maze.h"
+#endif
 #if PL_CONFIG_HAS_REMOTE
 	#include "RApp.h"
 	#include "Remote.h"
@@ -38,6 +41,11 @@ static int tune_counter = 0;
   		LED2_Neg();
 #if PL_CONFIG_HAS_BUZZER && 0
 		BUZ_PlayTune(MARIO);
+#endif
+#if PL_CONFIG_HAS_LINE_MAZE
+		MAZE_ClearSolution();
+		MAZE_SetSolveAlgorithm(LEFT_HAND);
+		LF_StartStopFollowing();
 #endif
 #if PL_CONFIG_HAS_SHELL
 		//CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
