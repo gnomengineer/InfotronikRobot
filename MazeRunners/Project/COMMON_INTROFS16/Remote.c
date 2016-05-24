@@ -146,6 +146,8 @@ static void RemoteTask (void *pvParameters) {
 }
 #endif
 
+#define MAX (2000)
+
 #if PL_CONFIG_HAS_MOTOR
 static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_t z) {
 
@@ -154,8 +156,11 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 	{
 		directionVal *= -1;
 	}
-    speedR = 4 * speedVal - 2 * directionVal;
-    speedL = 4 * speedVal + 2 * directionVal;
+
+	//if(directionVal > MAX/2)
+
+    speedR = 3 * speedVal /2 -  7 * directionVal / 10;
+    speedL = 3 * speedVal /2 +  7 * directionVal / 10;
     DRV_SetSpeed(speedL, speedR);
 }
 #endif
@@ -166,14 +171,14 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   int tmp;
 
   if (val>0) {
-    tmp = ((val*10)/127)*200;
+    tmp = ((val*MAX)/127);
   } else {
-    tmp = ((val*10)/128)*200;
+    tmp = ((val*MAX)/128);
   }
-  if (tmp<-2000) {
-    tmp = -2000;
-  } else if (tmp>2000) {
-    tmp = 2000;
+  if (tmp<-MAX) {
+    tmp = -MAX;
+  } else if (tmp>MAX) {
+    tmp = MAX;
   }
   return tmp;
 }

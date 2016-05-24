@@ -184,7 +184,7 @@ TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
 	}
 	else if(solver == STRAIGHT_HAND)
 	{
-		return TURN_STRAIGHT;
+		selectedTurn = TURN_STRAIGHT;
 	}
 	//after the selection is done, add the turn to the solution path
 	MAZE_AddPath(selectedTurn);
