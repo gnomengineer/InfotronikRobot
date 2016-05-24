@@ -50,6 +50,8 @@ static int tune_counter = 0;
 #if PL_CONFIG_HAS_SHELL
 		//CLS1_SendStr("SW1_Pressed\n\r", CLS1_GetStdio()->stdOut);
 		SHELL_SendString("SW1 Pressed\n\r");
+		buf = 'A';
+		(void)RAPP_SendPayloadDataBlock(&buf,sizeof(buf),RAPP_MSG_TYPE_JOYSTICK_BTN,RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
 #endif
   		break;
 

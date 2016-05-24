@@ -90,6 +90,7 @@ static uint8_t APP_GetXY(uint16_t *x, uint16_t *y, int8_t *x8, int8_t *y8) {
     *y = values[1];
   }
   /* transform into -128...127 with zero as mid position */
+
   if (x8!=NULL) {
     *x8 = ToSigned8Bit(values[0], TRUE);
   }
@@ -153,8 +154,8 @@ static void REMOTE_HandleMotorMsg(int16_t speedVal, int16_t directionVal, int16_
 	{
 		directionVal *= -1;
 	}
-    speedR = 5 * speedVal - 2 * directionVal;
-    speedL = 5 * speedVal + 2 * directionVal;
+    speedR = 4 * speedVal - 2 * directionVal;
+    speedL = 4 * speedVal + 2 * directionVal;
     DRV_SetSpeed(speedL, speedR);
 }
 #endif
@@ -165,14 +166,14 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   int tmp;
 
   if (val>0) {
-    tmp = ((val*10)/127)*100;
+    tmp = ((val*10)/127)*200;
   } else {
-    tmp = ((val*10)/128)*100;
+    tmp = ((val*10)/128)*200;
   }
-  if (tmp<-1000) {
-    tmp = -1000;
-  } else if (tmp>1000) {
-    tmp = 1000;
+  if (tmp<-2000) {
+    tmp = -2000;
+  } else if (tmp>2000) {
+    tmp = 2000;
   }
   return tmp;
 }
@@ -240,7 +241,7 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
       } else if (val=='A')
       {
     	MAZE_ClearSolution();
-      	MAZE_SetSolveAlgorithm(RIGHT_HAND);
+      	MAZE_SetSolveAlgorithm(STRAIGHT_HAND);
         LF_StartFollowing();
       } else if (val=='C') { /* 'C' button: motor stop*/
         DRV_SetMode(DRV_MODE_STOP);
@@ -253,7 +254,7 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
       	MAZE_SetSolveAlgorithm(LEFT_HAND);
         LF_StartFollowing();
       } else if (val=='E') {
-      	LF_StopFollowing();
+    	REF_CalibrateStartStop();
       }
 #else
       *handled = FALSE; /* no shell and no buzzer? */
